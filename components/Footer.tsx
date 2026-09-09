@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { FaTwitter, FaLinkedin, FaInstagram, FaMedium, FaEnvelope } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -91,47 +90,47 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Follow Me</h4>
             <div className="flex gap-4">
               <a
-                href="https://twitter.com/purelybeinghumanauthor"
+                href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaTwitter size={24} />
+                𝕏
               </a>
               <a
-                href="https://linkedin.com/in/purelybeinghumanauthor"
+                href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaLinkedin size={24} />
+                in
               </a>
               <a
-                href="https://instagram.com/purelybeinghumanauthor"
+                href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaInstagram size={24} />
+                IG
               </a>
               <a
-                href="https://medium.com/@purelybeinghumanauthor"
+                href="https://medium.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Medium"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaMedium size={24} />
+                M
               </a>
               <a
                 href="mailto:contact@purelybeinghuman.com"
                 aria-label="Email"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaEnvelope size={24} />
+                ✉
               </a>
             </div>
           </div>
