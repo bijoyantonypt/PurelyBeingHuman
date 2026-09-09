@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build && npm run export"
+  command = "npm run build"
   publish = "out"
 
 [build.environment]
@@ -12,10 +12,10 @@
   status = 404
 
 [context.production]
-  command = "npm run build && npm run export"
+  command = "npm run build"
 
 [context.deploy-preview]
-  command = "npm run build && npm run export"
+  command = "npm run build"
 
 [context.branch-deploy]
-  command = "npm run build && npm run export"
+  command = "npm run build"
