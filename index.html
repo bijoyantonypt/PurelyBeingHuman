@@ -1,65 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List Application</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>My To-Do List</h1>
-            <p class="subtitle">Stay organized and productive</p>
-        </header>
-
-        <div class="input-section">
-            <div class="input-group">
-                <input 
-                    type="text" 
-                    id="todoInput" 
-                    class="todo-input" 
-                    placeholder="Add a new task..."
-                    autocomplete="off"
-                >
-                <button id="addBtn" class="add-btn">Add Task</button>
-            </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="active">Active</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PurelyBeingHuman brings together inspiring books, exclusive offers, and thoughtful articles focused on authentic living."
+    />
+    <title>PurelyBeingHuman | Books, Offers & Articles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">PBH</div>
+          <div>
+            <p class="brand-name">PurelyBeingHuman</p>
+            <span class="brand-tag">Books • Ideas • Growth</span>
+          </div>
         </div>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#books">Books</a>
+          <a href="#upcoming">Upcoming</a>
+          <a href="#offers">Offers</a>
+          <a href="#articles">Medium</a>
+        </nav>
+      </header>
 
-        <div class="stats">
-            <div class="stat">
-                <span class="stat-label">Total:</span>
-                <span class="stat-value" id="totalCount">0</span>
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">A human-first publishing brand</p>
+            <h1>Books that help people live more honestly, deeply, and fully.</h1>
+            <p class="lede">
+              PurelyBeingHuman brings together reflective writing, meaningful growth, and practical wisdom for readers looking to live with more self-awareness and purpose.
+            </p>
+            <div class="cta-row">
+              <a class="primary-button" href="#books">Explore the collection</a>
+              <a class="secondary-button" href="#offers">View offers</a>
             </div>
-            <div class="stat">
-                <span class="stat-label">Completed:</span>
-                <span class="stat-value" id="completedCount">0</span>
+            <ul class="stats-row" aria-label="Brand statistics">
+              <li>
+                <strong>06</strong>
+                <span>Published books</span>
+              </li>
+              <li>
+                <strong>04</strong>
+                <span>Upcoming titles</span>
+              </li>
+              <li>
+                <strong>03</strong>
+                <span>Store partners</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hero-panel" aria-label="Featured brand highlights">
+            <div class="panel-card featured-book">
+              <span class="panel-pill">Featured</span>
+              <h2>The Courage to Be Real</h2>
+              <p>
+                A reader favourite centred on healing, authenticity, and becoming more aligned with your truest self.
+              </p>
             </div>
-            <div class="stat">
-                <span class="stat-label">Remaining:</span>
-                <span class="stat-value" id="remainingCount">0</span>
+            <div class="mini-grid">
+              <div class="panel-card">
+                <span>Available on</span>
+                <strong>Amazon • Flipkart • NotionPress</strong>
+              </div>
+              <div class="panel-card">
+                <span>Coupon codes</span>
+                <strong>PBH10 • HUMANBUNDLE</strong>
+              </div>
             </div>
-        </div>
+          </div>
+        </section>
 
-        <ul id="todoList" class="todo-list">
-            <!-- To-do items will be added here -->
-        </ul>
+        <section id="books" class="section-block">
+          <div class="section-heading">
+            <p class="eyebrow">Published works</p>
+            <h2>Six books already in the world</h2>
+          </div>
 
-        <div class="empty-state" id="emptyState">
-            <p>No tasks yet. Add one to get started! 🚀</p>
-        </div>
+          <div class="book-grid">
+            <article class="book-card accent-rose">
+              <div class="book-cover"><span>The</span></div>
+              <div class="book-content">
+                <p class="book-price">₹299</p>
+                <h3>The Courage to Be Real</h3>
+                <p class="book-subtitle">Self-acceptance and human truth</p>
+                <p>A compassionate guide to reclaiming identity, inner honesty, and the confidence to live without masks.</p>
+                <div class="store-tags">
+                  <a href="https://www.amazon.in/" target="_blank" rel="noreferrer">Amazon</a>
+                  <a href="https://www.flipkart.com/" target="_blank" rel="noreferrer">Flipkart</a>
+                  <a href="https://www.notionpress.com/" target="_blank" rel="noreferrer">NotionPress</a>
+                </div>
+              </div>
+            </article>
 
-        <div class="action-buttons">
-            <button id="clearCompletedBtn" class="clear-btn">Clear Completed</button>
-            <button id="clearAllBtn" class="clear-all-btn">Clear All</button>
+            <article class="book-card accent-amber">
+              <div class="book-cover"><span>Living</span></div>
+              <div class="book-content">
+                <p class="book-price">₹349</p>
+                <h3>Living Beyond Labels</h3>
+                <p class="book-subtitle">Freedom over identity</p>
+                <p>A reflection on how labels, expectations, and fear shape our choices—and how to move beyond them.</p>
+                <div class="store-tags">
+                  <a href="https://www.amazon.in/" target="_blank" rel="noreferrer">Amazon</a>
+                  <a href="https://www.flipkart.com/" target="_blank" rel="noreferrer">Flipkart</a>
+                  <a href="https://www.notionpress.com/" target="_blank" rel="noreferrer">NotionPress</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="book-card accent-green">
+              <div class="book-cover"><span>The</span></div>
+              <div class="book-content">
+                <p class="book-price">₹279</p>
+                <h3>The Human Reset</h3>
+                <p class="book-subtitle">The art of healing and renewal</p>
+                <p>A deeply personal framework for emotional clarity, recovery, and starting again with awareness.</p>
+                <div class="store-tags">
+                  <a href="https://www.amazon.in/" target="_blank" rel="noreferrer">Amazon</a>
+                  <a href="https://www.flipkart.com/" target="_blank" rel="noreferrer">Flipkart</a>
+                  <a href="https://www.notionpress.com/" target="_blank" rel="noreferrer">NotionPress</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="book-card accent-indigo">
+              <div class="book-cover"><span>Quiet</span></div>
+              <div class="book-content">
+                <p class="book-price">₹329</p>
+                <h3>Quiet Strength</h3>
+                <p class="book-subtitle">Inner resilience in everyday life</p>
+                <p>Practical and thoughtful stories exploring calm leadership, emotional endurance, and personal growth.</p>
+                <div class="store-tags">
+                  <a href="https://www.amazon.in/" target="_blank" rel="noreferrer">Amazon</a>
+                  <a href="https://www.flipkart.com/" target="_blank" rel="noreferrer">Flipkart</a>
+                  <a href="https://www.notionpress.com/" target="_blank" rel="noreferrer">NotionPress</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="book-card accent-violet">
+              <div class="book-cover"><span>Purpose</span></div>
+              <div class="book-content">
+                <p class="book-price">₹289</p>
+                <h3>Purpose in the Ordinary</h3>
+                <p class="book-subtitle">Meaning in daily living</p>
+                <p>An invitation to discover significance in small routines, quiet decisions, and everyday human moments.</p>
+                <div class="store-tags">
+                  <a href="https://www.amazon.in/" target="_blank" rel="noreferrer">Amazon</a>
+                  <a href="https://www.flipkart.com/" target="_blank" rel="noreferrer">Flipkart</a>
+                  <a href="https://www.notionpress.com/" target="_blank" rel="noreferrer">NotionPress</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="book-card accent-cyan">
+              <div class="book-cover"><span>Beyond</span></div>
+              <div class="book-content">
+                <p class="book-price">₹399</p>
+                <h3>Beyond Survival</h3>
+                <p class="book-subtitle">Thriving with intention</p>
+                <p>A practical exploration of meaningful living, emotional wellbeing, and conscious human flourishing.</p>
+                <div class="store-tags">
+                  <a href="https://www.amazon.in/" target="_blank" rel="noreferrer">Amazon</a>
+                  <a href="https://www.flipkart.com/" target="_blank" rel="noreferrer">Flipkart</a>
+                  <a href="https://www.notionpress.com/" target="_blank" rel="noreferrer">NotionPress</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="upcoming" class="section-block alt-block">
+          <div class="section-heading">
+            <p class="eyebrow">Next in line</p>
+            <h2>Upcoming titles from PurelyBeingHuman</h2>
+          </div>
+
+          <div class="upcoming-grid">
+            <article class="upcoming-card">
+              <span class="badge">Launching soon</span>
+              <h3>The Belonging Blueprint</h3>
+              <p>A reflective guide to building secure, meaningful connection in modern life.</p>
+            </article>
+            <article class="upcoming-card">
+              <span class="badge">Pre-order open</span>
+              <h3>Unlearning Fear</h3>
+              <p>A personal journey into fear, courage, and the freedom of beginning again.</p>
+            </article>
+            <article class="upcoming-card">
+              <span class="badge">Coming next</span>
+              <h3>Rooted in Wonder</h3>
+              <p>A contemplative look at curiosity, awe, and deepening presence in a noisy world.</p>
+            </article>
+            <article class="upcoming-card">
+              <span class="badge">Announcing soon</span>
+              <h3>The Beauty of Becoming</h3>
+              <p>A collection of essays on transformation, patience, and becoming more human.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="offers" class="section-block">
+          <div class="section-heading">
+            <p class="eyebrow">Special offers</p>
+            <h2>Coupon codes and reader-exclusive deals</h2>
+          </div>
+
+          <div class="offer-grid">
+            <article class="offer-card">
+              <div class="offer-code">PBH10</div>
+              <h3>10% Off</h3>
+              <p>Applicable on all published titles across Amazon, Flipkart and NotionPress.</p>
+            </article>
+            <article class="offer-card">
+              <div class="offer-code">HUMANBUNDLE</div>
+              <h3>Bundle Deal</h3>
+              <p>Get 2 books together and save 15% with a combined purchase offer.</p>
+            </article>
+            <article class="offer-card">
+              <div class="offer-code">READANDRISE</div>
+              <h3>Reader Special</h3>
+              <p>Use this code for a limited-time discount and free shipping on selected stores.</p>
+            </article>
+            <article class="offer-card">
+              <div class="offer-code">NEWAUTHOR20</div>
+              <h3>New Release Offer</h3>
+              <p>Special launch discount for brand-new readers discovering PurelyBeingHuman.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="articles" class="section-block alt-block">
+          <div class="section-heading">
+            <p class="eyebrow">Latest from Medium</p>
+            <h2>Fresh perspectives from the PurelyBeingHuman publication</h2>
+          </div>
+
+          <div class="article-grid">
+            <a class="article-card" href="https://medium.com/purelybeinghuman" target="_blank" rel="noreferrer">
+              <span class="article-meta">4 min read</span>
+              <h3>Why authentic living feels harder than it should</h3>
+              <span class="article-link">Read on Medium →</span>
+            </a>
+            <a class="article-card" href="https://medium.com/purelybeinghuman" target="_blank" rel="noreferrer">
+              <span class="article-meta">6 min read</span>
+              <h3>The invisible pressure of being “always enough”</h3>
+              <span class="article-link">Read on Medium →</span>
+            </a>
+            <a class="article-card" href="https://medium.com/purelybeinghuman" target="_blank" rel="noreferrer">
+              <span class="article-meta">5 min read</span>
+              <h3>How quiet habits shape a deeper human life</h3>
+              <span class="article-link">Read on Medium →</span>
+            </a>
+            <a class="article-card" href="https://medium.com/purelybeinghuman" target="_blank" rel="noreferrer">
+              <span class="article-meta">7 min read</span>
+              <h3>What healing really looks like in everyday routines</h3>
+              <span class="article-link">Read on Medium →</span>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div>
+          <p class="brand-name">PurelyBeingHuman</p>
+          <p>Writing for a more conscious, compassionate, and authentic life.</p>
         </div>
+        <div class="footer-links">
+          <a href="#books">Books</a>
+          <a href="#offers">Offers</a>
+          <a href="#articles">Articles</a>
+        </div>
+      </footer>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
