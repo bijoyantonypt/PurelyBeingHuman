@@ -1,148 +1,74 @@
 window.siteData = {
   books: [
     {
-      title: 'The Courage to Be Real',
-      subtitle: 'Self-acceptance and human truth',
+      title: 'Empathy Revolution',
+      subtitle: 'Why The World Needs Compassion More Than Ever',
       description:
-        'A compassionate guide to reclaiming identity, inner honesty, and the confidence to live without masks.',
-      price: '₹299',
+        'A book exploring empathy as a lived practice...',
       availability: [
-        { name: 'Amazon', url: 'https://www.amazon.in/s?k=The+Courage+to+Be+Real' },
-        { name: 'Flipkart', url: 'https://www.flipkart.com/search?q=The+Courage+to+Be+Real' },
-        { name: 'NotionPress', url: 'https://www.notionpress.com/' }
+        { name: 'Amazon', url: 'https://www.amazon.com/dp/B0H2WBP4WY' },
+        { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0H2WBP4WY?&tag=notionpcom-21' },
+        { name: 'Amazon UK', url: 'https://www.amazon.co.uk/dp/B0H2WBP4WY' },
+        { name: 'Flipkart', url: 'https://www.flipkart.com/empathy-revolution/p/itm79d0863066f35?pid=9798905100475&affid=editornoti&affid=editornoti' },
+        { name: 'NotionPress', url: 'https://notionpress.com/in/read/empathy-revolution' }
       ],
       accent: 'rose'
     },
     {
-      title: 'Living Beyond Labels',
-      subtitle: 'Freedom over identity',
+      title: 'Accountability',
+      subtitle: 'The Heart of Leadership and Justice',
       description:
-        'A reflection on how labels, expectations, and fear shape our choices—and how to move beyond them.',
-      price: '₹349',
+        'A reflection on personal responsibility...',
       availability: [
-        { name: 'Amazon', url: 'https://www.amazon.in/s?k=Living+Beyond+Labels' },
-        { name: 'Flipkart', url: 'https://www.flipkart.com/search?q=Living+Beyond+Labels' },
-        { name: 'NotionPress', url: 'https://www.notionpress.com/' }
+        { name: 'Amazon', url: 'https://www.amazon.com/dp/B0GTZYKYQ9' },
+        { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0GTZYKYQ9?&tag=notionpcom-21' },
+        { name: 'Amazon UK', url: 'https://www.amazon.co.uk/dp/B0GTZYKYQ9' },
+        { name: 'Flipkart', url: 'https://www.flipkart.com/accountability/p/itm72d486012d6e1?pid=9798903624942&affid=editornoti&affid=editornoti' },
+        { name: 'NotionPress', url: 'https://notionpress.com/in/read/accountability' }
       ],
       accent: 'amber'
     },
     {
-      title: 'The Human Reset',
-      subtitle: 'The art of healing and renewal',
+      title: 'Anger',
+      subtitle: 'Understanding the fire within',
       description:
-        'A deeply personal framework for emotional clarity, recovery, and starting again with awareness.',
-      price: '₹279',
+        'A close look at anger as signal...',
       availability: [
-        { name: 'Amazon', url: 'https://www.amazon.in/s?k=The+Human+Reset' },
-        { name: 'Flipkart', url: 'https://www.flipkart.com/search?q=The+Human+Reset' },
-        { name: 'NotionPress', url: 'https://www.notionpress.com/' }
+        { name: 'Amazon', url: 'https://www.amazon.com/dp/B0F6ZQKGYL' },
+        { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0F6ZQKGYL?&tag=notionpcom-21' },
+        { name: 'Amazon UK', url: 'https://www.amazon.co.uk/dp/B0F6ZQKGYL' },
+        { name: 'Flipkart', url: 'https://www.flipkart.com/anger/p/itm41c66709a55ac?pid=9798897241835&affid=editornoti&affid=editornoti' },
+        { name: 'NotionPress', url: 'https://notionpress.com/in/read/anger' }
       ],
       accent: 'green'
     },
     {
-      title: 'Quiet Strength',
-      subtitle: 'Inner resilience in everyday life',
+      title: 'Hatred',
+      subtitle: 'The Cancer that Destroys Mankind',
       description:
-        'Practical and thoughtful stories exploring calm leadership, emotional endurance, and personal growth.',
-      price: '₹329',
+        'An examination of how hatred forms...',
       availability: [
-        { name: 'Amazon', url: 'https://www.amazon.in/s?k=Quiet+Strength' },
-        { name: 'Flipkart', url: 'https://www.flipkart.com/search?q=Quiet+Strength' },
-        { name: 'NotionPress', url: 'https://www.notionpress.com/' }
+        { name: 'Amazon', url: 'https://www.amazon.com/HATRED-Cancer-that-Destroys-Mankind/dp/9334093994/ref=sr_1_6?crid=2NJ3K0JI7H77P&dib=eyJ2IjoiMSJ9.oaHfQssU3FAMxL_poMh2e_PnC62LgQcZZ7opdD0yh9BGJyidouFBkgLSRZzmTapd2mRjbWeVAmIk4ZNYGG_6uPqW_nJ3SG99vgYueNEUz1I.o0_-YUkzbCE5ZmtdTDO6EAIEGi6AWXhENlna_NdImvg&dib_tag=se&keywords=Tomy+G+Poovattil&qid=1789375045&sprefix=tomy+g+poovattil%2Caps%2C315&sr=8-6' },
+        { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0DVTH88TZ?&tag=notionpcom-21' },
+        { name: 'Amazon UK', url: 'https://www.amazon.co.uk/HATRED-Cancer-that-Destroys-Mankind/dp/9334093994/ref=sr_1_3?crid=185W30HHC6WNK&dib=eyJ2IjoiMSJ9.-_XAEa18shQmAAV93iN4QP7IGjdr0IfztpdMlHtliIhtFTMFFrzHZFP4R5D5hHEmjDfCekEpuwvOy3l-hVaghg.AdV9pouLwPR6gg2svSwjmFo2a4XkdQyyRtBF-FZRFHE&dib_tag=se&keywords=Tomy+G+Poovattil&qid=1789374987&sprefix=tomy+g+poovattil%2Caps%2C301&sr=8-3' },
+        { name: 'Flipkart', url: 'https://www.flipkart.com/hatred/p/itm05bf632c5bda9?pid=9798896996347&affid=editornoti&affid=editornoti' },
+        { name: 'NotionPress', url: 'https://notionpress.com/in/read/hatred-1410166332' }
+      ],
+      accent: 'cyan'
+    },
+    {
+      title: 'Redefining Neutrality',
+      subtitle: 'The space between sides',
+      description:
+        'A reconsideration of neutrality as an active...',
+      availability: [
+        { name: 'Amazon', url: 'https://www.amazon.com/dp/B0D927HDML' },
+        { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0D927HDML?&tag=notionpcom-21' },
+        { name: 'Amazon UK', url: 'https://www.amazon.co.uk/dp/B0D927HDML' },
+        { name: 'Flipkart', url: 'https://www.flipkart.com/redefining-neutrality-hidden-connection-between-injustice/p/itm1506c34c5f026?pid=9798894758909&affid=editornoti&affid=editornoti' },
+        { name: 'NotionPress', url: 'https://notionpress.com/in/read/redefining-neutrality' }
       ],
       accent: 'indigo'
     },
-    {
-      title: 'Purpose in the Ordinary',
-      subtitle: 'Meaning in daily living',
-      description:
-        'An invitation to discover significance in small routines, quiet decisions, and everyday human moments.',
-      price: '₹289',
-      availability: [
-        { name: 'Amazon', url: 'https://www.amazon.in/s?k=Purpose+in+the+Ordinary' },
-        { name: 'Flipkart', url: 'https://www.flipkart.com/search?q=Purpose+in+the+Ordinary' },
-        { name: 'NotionPress', url: 'https://www.notionpress.com/' }
-      ],
-      accent: 'violet'
-    },
-    {
-      title: 'Beyond Survival',
-      subtitle: 'Thriving with intention',
-      description:
-        'A practical exploration of meaningful living, emotional wellbeing, and conscious human flourishing.',
-      price: '₹399',
-      availability: [
-        { name: 'Amazon', url: 'https://www.amazon.in/s?k=Beyond+Survival' },
-        { name: 'Flipkart', url: 'https://www.flipkart.com/search?q=Beyond+Survival' },
-        { name: 'NotionPress', url: 'https://www.notionpress.com/' }
-      ],
-      accent: 'cyan'
-    }
   ],
-  upcomingBooks: [
-    {
-      title: 'The Belonging Blueprint',
-      status: 'Launching soon',
-      description: 'A reflective guide to building secure, meaningful connection in modern life.'
-    },
-    {
-      title: 'Unlearning Fear',
-      status: 'Pre-order open',
-      description: 'A personal journey into fear, courage, and the freedom of beginning again.'
-    },
-    {
-      title: 'Rooted in Wonder',
-      status: 'Coming next',
-      description: 'A contemplative look at curiosity, awe, and deepening presence in a noisy world.'
-    },
-    {
-      title: 'The Beauty of Becoming',
-      status: 'Announcing soon',
-      description: 'A collection of essays on transformation, patience, and becoming more human.'
-    }
-  ],
-  offers: [
-    {
-      code: 'PBH10',
-      title: '10% Off',
-      details: 'Applicable on all published titles across Amazon, Flipkart and NotionPress.'
-    },
-    {
-      code: 'HUMANBUNDLE',
-      title: 'Bundle Deal',
-      details: 'Get 2 books together and save 15% with a combined purchase offer.'
-    },
-    {
-      code: 'READANDRISE',
-      title: 'Reader Special',
-      details: 'Use this code for a limited-time discount and free shipping on selected stores.'
-    },
-    {
-      code: 'NEWAUTHOR20',
-      title: 'New Release Offer',
-      details: 'Special launch discount for brand-new readers discovering PurelyBeingHuman.'
-    }
-  ],
-  mediumArticles: [
-    {
-      title: 'Why authentic living feels harder than it should',
-      url: 'https://medium.com/purelybeinghuman',
-      readTime: '4 min read'
-    },
-    {
-      title: 'The invisible pressure of being “always enough”',
-      url: 'https://medium.com/purelybeinghuman',
-      readTime: '6 min read'
-    },
-    {
-      title: 'How quiet habits shape a deeper human life',
-      url: 'https://medium.com/purelybeinghuman',
-      readTime: '5 min read'
-    },
-    {
-      title: 'What healing really looks like in everyday routines',
-      url: 'https://medium.com/purelybeinghuman',
-      readTime: '7 min read'
-    }
-  ]
 };
