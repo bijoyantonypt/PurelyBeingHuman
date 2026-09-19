@@ -32,89 +32,55 @@ function parseDate(value) {
 }
 
 async function fetchAllPosts(page) {
-  const query = `query PublicationContentDataQuery($ref: PublicationRef!, $first: Int!, $after: String!, $orderBy: PublicationPostsOrderBy, $filter: PublicationPostsFilter) {
-  publication: publicationByRef(ref: $ref) {
-    publicationPostsConnection(first: $first, after: $after, orderBy: $orderBy, filter: $filter) {
-      edges {
-        listedAt
-        node {
-          title
-          mediumUrl
-          firstPublishedAt
-          createdAt
+  const collectLinks = async () => {
+    return await page.evaluate(() => {
+      const anchors = Array.from(document.querySelectorAll('a[href*="/purely-being-human/"]'));
+      const blockedPathPieces = ['/all', '/latest', '/archive', '/followers', '/@', '/about', '/tags'];
+      const seen = new Set();
+      const links = [];
+
+      for (const anchor of anchors) {
+        const href = anchor.getAttribute('href') || '';
+        if (!href) continue;
+
+        const absolute = href.startsWith('http') ? href : `https://medium.com${href}`;
+        const clean = absolute.split('?')[0].split('#')[0].replace(/\/$/, '');
+
+        if (!clean.includes('/purely-being-human/')) continue;
+        if (blockedPathPieces.some((piece) => clean.includes(piece))) continue;
+
+        if (!seen.has(clean)) {
+          seen.add(clean);
+          links.push(clean);
         }
       }
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
+
+      return links;
+    });
+  };
+
+  let previousCount = 0;
+  let stableRounds = 0;
+
+  for (let i = 0; i < 35 && stableRounds < 4; i += 1) {
+    const current = await collectLinks();
+    if (current.length === previousCount) {
+      stableRounds += 1;
+    } else {
+      stableRounds = 0;
+      previousCount = current.length;
     }
+
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(900);
   }
-}`;
 
-  return await page.evaluate(async (graphqlQuery) => {
-    let afterCursor = '';
-    let hasNextPage = true;
-    const allRows = [];
+  const finalLinks = await collectLinks();
+  if (finalLinks.length === 0) {
+    throw new Error('No publication article links found on Medium archive page');
+  }
 
-    while (hasNextPage) {
-      const payload = [
-        {
-          operationName: 'PublicationContentDataQuery',
-          variables: {
-            ref: {
-              slug: 'purely-being-human',
-              domain: null,
-            },
-            first: 25,
-            after: afterCursor,
-            orderBy: {
-              publishedAt: 'DESC',
-            },
-            filter: {
-              published: true,
-            },
-          },
-          query: graphqlQuery,
-        },
-      ];
-
-      const response = await fetch('https://medium.com/_/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error(`GraphQL request failed: ${response.status} ${response.statusText}`);
-      }
-
-      const json = await response.json();
-      const connection = json?.[0]?.data?.publication?.publicationPostsConnection;
-      if (!connection || !Array.isArray(connection.edges)) {
-        throw new Error('Unexpected GraphQL response from publicationPostsConnection');
-      }
-
-      for (const edge of connection.edges) {
-        const node = edge?.node || {};
-        allRows.push({
-          title: node.title || '',
-          url: node.mediumUrl || '',
-          publishedAt: node.firstPublishedAt || edge?.listedAt || node.createdAt || '',
-        });
-      }
-
-      hasNextPage = Boolean(connection.pageInfo?.hasNextPage);
-      afterCursor = connection.pageInfo?.endCursor || '';
-      if (hasNextPage && !afterCursor) {
-        throw new Error('Missing GraphQL endCursor while hasNextPage is true');
-      }
-    }
-
-    return allRows;
-  }, query);
+  return finalLinks;
 }
 
 async function fetchArticleMeta(page, url) {
@@ -126,7 +92,7 @@ async function fetchArticleMeta(page, url) {
     });
 
     if (!response.ok) {
-      return { summary: '', image: '' };
+      return { title: '', summary: '', image: '', publishedAt: '' };
     }
 
     const htmlText = await response.text();
@@ -149,8 +115,13 @@ async function fetchArticleMeta(page, url) {
     };
 
     return {
+      title: readMeta('og:title') || htmlText.match(/<title>(.*?)<\/title>/is)?.[1] || '',
       summary: readMeta('og:description') || '',
       image: readMeta('og:image') || '',
+      publishedAt:
+        readMeta('article:published_time') ||
+        htmlText.match(/<time[^>]+datetime="([^"]+)"/is)?.[1] ||
+        '',
     };
   }, url);
 }
@@ -167,17 +138,13 @@ async function buildArticles() {
     await page.goto(archiveUrl, { waitUntil: 'domcontentloaded', timeout: 120000 });
     await page.waitForTimeout(2500);
 
-    const rows = await fetchAllPosts(page);
+    const articleUrls = await fetchAllPosts(page);
     const uniqueRows = Array.from(
       new Map(
-        rows
-          .map((row) => ({
-            title: normalizeText(row.title || ''),
-            url: normalizeMediumUrl(row.url || ''),
-            publishedAt: parseDate(row.publishedAt || ''),
-          }))
-          .filter((row) => row.url && row.publishedAt)
-          .map((row) => [row.url, row])
+        articleUrls
+          .map((url) => normalizeMediumUrl(url || ''))
+          .filter(Boolean)
+          .map((url) => [url, { url }])
       ).values()
     );
 
@@ -187,13 +154,18 @@ async function buildArticles() {
       try {
         meta = await fetchArticleMeta(page, row.url);
       } catch {
-        meta = { summary: '', image: '' };
+        meta = { title: '', summary: '', image: '', publishedAt: '' };
+      }
+
+      const publishedAt = parseDate(meta.publishedAt || '');
+      if (!publishedAt) {
+        continue;
       }
 
       articles.push({
-        title: row.title || 'Medium article',
+        title: normalizeText(meta.title || row.url.split('/').at(-1) || 'Medium article'),
         url: row.url,
-        publishedAt: row.publishedAt,
+        publishedAt,
         summary: normalizeText(meta.summary || ''),
         image: meta.image || '',
       });
