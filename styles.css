@@ -94,15 +94,21 @@ img {
 }
 
 .brand-name {
-  font-size: 1.05rem;
+  text-align: center;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
   font-weight: 800;
   letter-spacing: -0.04em;
+  line-height: 1.08;
 }
 
 .topbar .brand-name {
   text-align: center;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.2rem, 5.4vw, 3.3rem);
   line-height: 1.05;
+}
+
+.brand-block > div {
+  text-align: center;
 }
 
 .brand-tag {
