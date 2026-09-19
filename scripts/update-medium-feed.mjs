@@ -26,7 +26,8 @@ function extractTagContent(item, tagName) {
 }
 
 function extractImageUrl(item) {
-  const contentEncoded = item.match(/<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/is)?.[1] || item;
+  const contentEncoded = item.match(/<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/is)?.[1] || '';
+  const sources = [contentEncoded, item].filter(Boolean);
 
   const patterns = [
     /<media:content[^>]*url="([^"]+)"/is,
@@ -36,16 +37,18 @@ function extractImageUrl(item) {
     /https?:\/\/[^\s"'<>]+(?:\.(?:jpg|jpeg|png|webp|gif|avif))(?:\?[^\s"'<>]+)?/is,
   ];
 
-  for (const pattern of patterns) {
-    const match = contentEncoded.match(pattern);
-    if (match) {
-      const value = match[1] || match[0];
-      if (typeof value === 'string' && value.startsWith('http')) {
-        return value;
-      }
-      const cleaned = String(value || '').replace(/.*?https?:\/\//i, 'https://');
-      if (cleaned.startsWith('http')) {
-        return cleaned;
+  for (const source of sources) {
+    for (const pattern of patterns) {
+      const match = source.match(pattern);
+      if (match) {
+        const value = match[1] || match[0];
+        if (typeof value === 'string' && value.startsWith('http')) {
+          return value;
+        }
+        const cleaned = String(value || '').replace(/.*?https?:\/\//i, 'https://');
+        if (cleaned.startsWith('http')) {
+          return cleaned;
+        }
       }
     }
   }
@@ -75,8 +78,62 @@ function parseXmlArticles(xmlText) {
         image: image || '',
       };
     })
-    .filter(Boolean)
-    .slice(0, 8);
+    .filter(Boolean);
+}
+
+function extractMetaImage(htmlText) {
+  const patterns = [
+    /<meta[^>]*property="og:image"[^>]*content="([^"]+)"/is,
+    /<meta[^>]*content="([^"]+)"[^>]*property="og:image"/is,
+    /<meta[^>]*name="twitter:image"[^>]*content="([^"]+)"/is,
+    /<meta[^>]*content="([^"]+)"[^>]*name="twitter:image"/is,
+    /<img[^>]+src="([^"]+)"/is,
+  ];
+
+  for (const pattern of patterns) {
+    const match = htmlText.match(pattern);
+    if (match && match[1] && String(match[1]).startsWith('http')) {
+      return String(match[1]);
+    }
+  }
+
+  return '';
+}
+
+async function enrichArticlesWithMissingImages(articles) {
+  const enriched = [];
+
+  for (const article of articles) {
+    if (article.image) {
+      enriched.push(article);
+      continue;
+    }
+
+    try {
+      const response = await fetch(article.url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0',
+          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        },
+      });
+
+      if (!response.ok) {
+        enriched.push(article);
+        continue;
+      }
+
+      const htmlText = await response.text();
+      const image = extractMetaImage(htmlText);
+      enriched.push({
+        ...article,
+        image: image || article.image || '',
+      });
+    } catch {
+      enriched.push(article);
+    }
+  }
+
+  return enriched;
 }
 
 async function fetchXml() {
@@ -96,7 +153,8 @@ async function fetchXml() {
 
 try {
   const xmlText = await fetchXml();
-  const articles = parseXmlArticles(xmlText);
+  const parsedArticles = parseXmlArticles(xmlText);
+  const articles = await enrichArticlesWithMissingImages(parsedArticles);
 
   const payload = {
     publicationUrl: mediumPublicationUrl,

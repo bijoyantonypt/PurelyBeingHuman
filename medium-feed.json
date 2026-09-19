@@ -1,54 +1,76 @@
-﻿{
-    "publicationUrl":  "https://medium.com/purely-being-human",
-    "fetchedAt":  "2026-09-14T13:32:23.0447682+05:30",
-    "articles":  [
-                     {
-                         "title":  "Democracy Under Pressure: A Global Challenge and India’s Responsibility",
-                         "url":  "https://medium.com/purely-being-human/democracy-under-pressure-a-global-challenge-and-indias-responsibility-4d02fc46826e?source=rss----48be4a223360---4",
-                         "publishedAt":  "Mon, 14 Sep 2026 07:45:25 GMT",
-                         "summary":  ""
-                     },
-                     {
-                         "title":  "When Poverty Is Hidden Behind Barriers",
-                         "url":  "https://medium.com/purely-being-human/when-poverty-is-hidden-behind-barriers-cac90aad1576?source=rss----48be4a223360---4",
-                         "publishedAt":  "Sun, 13 Sep 2026 04:58:27 GMT",
-                         "summary":  ""
-                     },
-                     {
-                         "title":  "When Perfection Becomes the Enemy of Productivity",
-                         "url":  "https://medium.com/purely-being-human/when-perfection-becomes-the-enemy-of-productivity-6ac7d111fe14?source=rss----48be4a223360---4",
-                         "publishedAt":  "Sat, 12 Sep 2026 03:52:03 GMT",
-                         "summary":  ""
-                     },
-                     {
-                         "title":  "When Faith Becomes a Barrier: What Does True Culture Really Mean?",
-                         "url":  "https://medium.com/purely-being-human/when-faith-becomes-a-barrier-what-does-true-culture-really-mean-f63e06e64902?source=rss----48be4a223360---4",
-                         "publishedAt":  "Fri, 11 Sep 2026 00:59:41 GMT",
-                         "summary":  ""
-                     },
-                     {
-                         "title":  "When Management Optimisation Misses the Bigger Picture",
-                         "url":  "https://medium.com/purely-being-human/when-management-optimisation-misses-the-bigger-picture-d80043462f30?source=rss----48be4a223360---4",
-                         "publishedAt":  "Wed, 09 Sep 2026 23:59:55 GMT",
-                         "summary":  ""
-                     },
-                     {
-                         "title":  "Whose Life Are You Living?",
-                         "url":  "https://medium.com/purely-being-human/whose-life-are-you-living-4212902018af?source=rss----48be4a223360---4",
-                         "publishedAt":  "Wed, 09 Sep 2026 00:59:30 GMT",
-                         "summary":  ""
-                     },
-                     {
-                         "title":  "What I Failed to See",
-                         "url":  "https://medium.com/purely-being-human/what-i-failed-to-see-88c1d845cc2b?source=rss----48be4a223360---4",
-                         "publishedAt":  "Mon, 07 Sep 2026 14:47:43 GMT",
-                         "summary":  ""
-                     },
-                     {
-                         "title":  "The Taste of Silence",
-                         "url":  "https://medium.com/purely-being-human/the-taste-of-silence-ce2a73afc080?source=rss----48be4a223360---4",
-                         "publishedAt":  "Mon, 07 Sep 2026 14:40:57 GMT",
-                         "summary":  ""
-                     }
-                 ]
+{
+  "publicationUrl": "https://medium.com/purely-being-human",
+  "fetchedAt": "2026-09-19T09:57:35.396994+05:30",
+  "articles": [
+    {
+      "title": "The Dopamine Trap: How Modern Life Quietly Addicts Us All",
+      "url": "https://medium.com/purely-being-human/the-dopamine-trap-how-modern-life-quietly-addicts-us-all-1e9246712a47?source=rss----48be4a223360---4",
+      "publishedAt": "Fri, 18 Sep 2026 03:18:21 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/310/1*J6cqu1JY8cAC-pLc8kxXZg.png"
+    },
+    {
+      "title": "The Beauty of Not Knowing",
+      "url": "https://medium.com/purely-being-human/the-beauty-of-not-knowing-f144dc90234e?source=rss----48be4a223360---4",
+      "publishedAt": "Thu, 17 Sep 2026 04:06:40 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/397/1*fEg6w4K4cRCzGcfpyivHWA.png"
+    },
+    {
+      "title": "The Education We Need: Why India Needs a Paradigm Shift",
+      "url": "https://medium.com/purely-being-human/the-education-we-need-why-india-needs-a-paradigm-shift-75e27ab9315f?source=rss----48be4a223360---4",
+      "publishedAt": "Wed, 16 Sep 2026 03:21:59 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/400/1*shVSkWbZjFFZXounlIst9w.png"
+    },
+    {
+      "title": "Are We Raising Children to Live…or Only to Succeed?",
+      "url": "https://medium.com/purely-being-human/are-we-raising-children-to-live-or-only-to-succeed-f00898fe8dd3?source=rss----48be4a223360---4",
+      "publishedAt": "Tue, 15 Sep 2026 09:35:35 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/348/1*6kaQkZXkhG53eVTgHaRidA.png"
+    },
+    {
+      "title": "Democracy Under Pressure: A Global Challenge and India’s Responsibility",
+      "url": "https://medium.com/purely-being-human/democracy-under-pressure-a-global-challenge-and-indias-responsibility-4d02fc46826e?source=rss----48be4a223360---4",
+      "publishedAt": "Mon, 14 Sep 2026 07:45:25 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*6VEf5rfmMTR9EAYdbHjlYQ.jpeg"
+    },
+    {
+      "title": "When Poverty Is Hidden Behind Barriers",
+      "url": "https://medium.com/purely-being-human/when-poverty-is-hidden-behind-barriers-cac90aad1576?source=rss----48be4a223360---4",
+      "publishedAt": "Sun, 13 Sep 2026 04:58:27 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/297/1*DCT0zXDvzd8sxJ4KqObW8w.png"
+    },
+    {
+      "title": "When Perfection Becomes the Enemy of Productivity",
+      "url": "https://medium.com/purely-being-human/when-perfection-becomes-the-enemy-of-productivity-6ac7d111fe14?source=rss----48be4a223360---4",
+      "publishedAt": "Sat, 12 Sep 2026 03:52:03 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/279/1*hUdRRPalfvEcDUOUefxskA.png"
+    },
+    {
+      "title": "When Faith Becomes a Barrier: What Does True Culture Really Mean?",
+      "url": "https://medium.com/purely-being-human/when-faith-becomes-a-barrier-what-does-true-culture-really-mean-f63e06e64902?source=rss----48be4a223360---4",
+      "publishedAt": "Fri, 11 Sep 2026 00:59:41 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/480/1*Of22QXcIPA5Mg40vc9A_mg.png"
+    },
+    {
+      "title": "When Management Optimisation Misses the Bigger Picture",
+      "url": "https://medium.com/purely-being-human/when-management-optimisation-misses-the-bigger-picture-d80043462f30?source=rss----48be4a223360---4",
+      "publishedAt": "Wed, 09 Sep 2026 23:59:55 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/409/1*U02H8ZM5hg2prg3BvGFRcw.png"
+    },
+    {
+      "title": "Whose Life Are You Living?",
+      "url": "https://medium.com/purely-being-human/whose-life-are-you-living-4212902018af?source=rss----48be4a223360---4",
+      "publishedAt": "Wed, 09 Sep 2026 00:59:30 GMT",
+      "summary": "",
+      "image": "https://cdn-images-1.medium.com/max/313/1*cJa3UY44BcJTyqW7rX-dBQ.png"
+    }
+  ]
 }
