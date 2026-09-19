@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const data = {
     ...fallbackData,
-    mediumArticles: (feedData.articles || fallbackData.mediumArticles || []).map((article) => ({
+    mediumArticles: ((Array.isArray(feedData.articles) && feedData.articles.length > 0)
+      ? feedData.articles
+      : (fallbackData.mediumArticles || [])).map((article) => ({
       title: article.title,
       url: article.url,
       readTime: article.readTime || 'Fresh article',
@@ -94,25 +96,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const renderArticles = () => {
     const articleGrid = document.getElementById('articleGrid');
-    if (!articleGrid || !data.mediumArticles) return;
+    if (!data.mediumArticles) return;
 
-    articleGrid.innerHTML = data.mediumArticles
-      .map(
-        (article) => `
-          <a class="article-card" href="${article.url}" target="_blank" rel="noreferrer">
-            ${article.image ? `<img class="article-thumb" src="${article.image}" alt="${article.title}" loading="lazy" />` : ''}
-            <div class="article-body">
-              <span class="article-meta">${article.readTime}</span>
-              <h3>${article.title}</h3>
-              <span class="article-link">Read on Medium →</span>
-            </div>
-          </a>
-        `
-      )
-      .join('');
+    if (articleGrid) {
+      articleGrid.innerHTML = data.mediumArticles
+        .map(
+          (article) => `
+            <a class="article-card" href="${article.url}" target="_blank" rel="noreferrer">
+              ${article.image ? `<img class="article-thumb" src="${article.image}" alt="${article.title}" loading="lazy" />` : ''}
+              <div class="article-body">
+                <span class="article-meta">${article.readTime}</span>
+                <h3>${article.title}</h3>
+                <span class="article-link">Read on Medium →</span>
+              </div>
+            </a>
+          `
+        )
+        .join('');
+    }
 
     const archiveContainer = document.getElementById('archiveArticles');
     if (archiveContainer) {
+      const articleCount = document.getElementById('articleCount');
+      if (articleCount) {
+        articleCount.textContent = `(${data.mediumArticles.length})`;
+      }
+
       archiveContainer.innerHTML = data.mediumArticles
         .map(
           (article) => `

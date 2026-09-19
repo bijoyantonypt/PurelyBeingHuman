@@ -74,29 +74,6 @@ const upcomingBooks = [
   },
 ];
 
-const offers = [
-  {
-    code: 'PBH10',
-    title: '10% Off',
-    details: 'Applicable on all published titles across Amazon, Flipkart and NotionPress.',
-  },
-  {
-    code: 'HUMANBUNDLE',
-    title: 'Bundle Deal',
-    details: 'Get 2 books together and save 15% with a combined purchase offer.',
-  },
-  {
-    code: 'READANDRISE',
-    title: 'Reader Special',
-    details: 'Use this code for a limited-time discount and free shipping on selected stores.',
-  },
-  {
-    code: 'NEWAUTHOR20',
-    title: 'New Release Offer',
-    details: 'Special launch discount for brand-new readers discovering PurelyBeingHuman.',
-  },
-];
-
 const mediumArticles = [
   {
     title: 'Why authentic living feels harder than it should',
@@ -144,7 +121,6 @@ export default function HomePage() {
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#books">Books</a>
           <a href="#upcoming">Upcoming</a>
-          <a href="#offers">Offers</a>
           <a href="#articles">Medium</a>
         </nav>
       </header>
@@ -159,7 +135,7 @@ export default function HomePage() {
             </p>
             <div className="cta-row">
               <a className="primary-button" href="#books">Explore the collection</a>
-              <a className="secondary-button" href="#offers">View offers</a>
+              <a className="secondary-button" href="#articles">View articles</a>
             </div>
             <ul className="stats-row" aria-label="Brand statistics">
               <li>
@@ -241,23 +217,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="offers" className="section-block">
-          <div className="section-heading">
-            <p className="eyebrow">Special offers</p>
-            <h2>Coupon codes and reader-exclusive deals</h2>
-          </div>
-
-          <div className="offer-grid">
-            {offers.map((offer) => (
-              <article key={offer.code} className="offer-card">
-                <div className="offer-code">{offer.code}</div>
-                <h3>{offer.title}</h3>
-                <p>{offer.details}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section id="articles" className="section-block alt-block">
           <div className="section-heading">
             <p className="eyebrow">Latest from Medium</p>
@@ -286,7 +245,6 @@ export default function HomePage() {
         </div>
         <div className="footer-links">
           <a href="#books">Books</a>
-          <a href="#offers">Offers</a>
           <a href="#articles">Articles</a>
         </div>
       </footer>
