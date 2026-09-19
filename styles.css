@@ -57,7 +57,7 @@ img {
 .topbar {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: 18px;
   padding: 18px 24px;
@@ -71,15 +71,18 @@ img {
 }
 
 .brand-block {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 14px;
+  width: 100%;
+  min-height: 92px;
+  padding-left: 110px;
 }
 
 .brand-mark {
-  width: 72px;
-  height: 72px;
+  width: 92px;
+  height: 92px;
   border-radius: 16px;
   object-fit: cover;
   display: block;
@@ -89,8 +92,11 @@ img {
 }
 
 .brand-logo {
-  width: 72px;
-  height: 72px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 92px;
+  height: 92px;
 }
 
 .brand-name {
@@ -105,6 +111,7 @@ img {
   text-align: center;
   font-size: clamp(2.2rem, 5.4vw, 3.3rem);
   line-height: 1.05;
+  margin-bottom: 10px;
 }
 
 .brand-block > div {
@@ -120,6 +127,7 @@ img {
   text-align: center;
   display: block;
   font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .nav-links {
@@ -614,6 +622,17 @@ img {
     align-items: center;
   }
 
+  .brand-block {
+    min-height: 72px;
+    padding-left: 82px;
+  }
+
+  .brand-logo,
+  .brand-mark {
+    width: 68px;
+    height: 68px;
+  }
+
   .site-footer {
     flex-direction: column;
     align-items: flex-start;
@@ -661,10 +680,6 @@ img {
     transition: none !important;
     animation: none !important;
   }
-}
-
-    gap: 10px;
-    justify-content: center;
 }
 
 .clear-btn,
