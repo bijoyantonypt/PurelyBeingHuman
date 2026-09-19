@@ -246,7 +246,7 @@ export default function HomePage() {
       <footer className="site-footer">
         <div>
           <p className="brand-name">PurelyBeingHuman</p>
-          <p>Writing for a more conscious, compassionate, and authentic life.</p>
+          <p>Exploring the human experience through reflection, wisdom and meaningful living.</p>
         </div>
         <div className="footer-links">
           <a href="#books">Books</a>
