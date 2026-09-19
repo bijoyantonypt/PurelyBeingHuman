@@ -52,26 +52,31 @@ const publishedBooks = [
 ];
 
 const upcomingBooks = [
-  {
+ {
     title: 'From Reaction to Response: Mastering the Pause',
     status: 'Launching soon',
-    description: 'A practical guide to emotional steadiness, wise timing, and the power of meaningful pause.',
+    description: 'A practical guide discovering the power of pausing before reacting and learn how a moment of awareness can transform your responses, relationships and life.'
   },
   {
     title: 'The Mirror Within',
-    status: 'Pre-order open',
-    description: 'An inward journey toward self-awareness, truth-telling, and deeper human growth.',
+    status: 'Coming next',
+    description: 'An inward journey of self-reflection that encourages us to look within, understand ourselves honestly and consciously shape the life we want.'
+  },
+  {
+    title: 'The Invisible Thread',
+    status: 'Coming next',
+    description: 'Exploring how empathy, trust, communication and understanding can influence others positively without controlling or manipulating them.'
+  },
+  {
+    title: 'Micro shifts Macro Impact: Awakening of A Common Man',
+    status: 'Coming next',
+    description: 'Compelling reflections on how small changes in everyday thinking and action can awaken individual responsibility and create meaningful change in society.'
   },
   {
     title: 'Privacy and Human Dignity controlled by Government Corporations',
     status: 'Coming next',
-    description: 'A critical exploration of how institutions shape personal freedom, dignity, and human agency.',
-  },
-  {
-    title: 'Micro shifts Macro Impact: Awakening of A Common Man',
-    status: 'Announcing soon',
-    description: 'A compelling reflection on how small human changes can ripple into collective transformation.',
-  },
+    description: 'A critical exploration of how technology and corporate power are reshaping privacy, personal freedom and the fundamental dignity of the individual.'
+  }
 ];
 
 const mediumArticles = [
@@ -115,7 +120,7 @@ export default function HomePage() {
           <img className="brand-mark brand-logo" src="Book_Images/PurelyBeingHuman%20Profile.jpg" alt="PurelyBeingHuman profile" />
           <div>
             <p className="brand-name">PurelyBeingHuman</p>
-            <span className="brand-tag">Books • Ideas • Growth</span>
+            <span className="brand-tag">Practical wisdom for living a more conscious and meaningful life</span>
           </div>
         </div>
         <nav className="nav-links" aria-label="Main navigation">

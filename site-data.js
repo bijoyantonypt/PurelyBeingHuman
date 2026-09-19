@@ -80,22 +80,27 @@ window.siteData = {
     {
       title: 'From Reaction to Response: Mastering the Pause',
       status: 'Launching soon',
-      description: 'A practical guide to emotional steadiness, wise timing, and the power of meaningful pause.'
+      description: 'A practical guide discovering the power of pausing before reacting and learn how a moment of awareness can transform your responses, relationships and life.'
     },
     {
       title: 'The Mirror Within',
       status: 'Coming next',
-      description: 'An inward journey toward self-awareness, truth-telling, and deeper human growth.'
+      description: 'An inward journey of self-reflection that encourages us to look within, understand ourselves honestly and consciously shape the life we want.'
     },
     {
-      title: 'Privacy and Human Dignity controlled by Government Corporations',
+      title: 'The Invisible Thread',
       status: 'Coming next',
-      description: 'A critical exploration of how institutions shape personal freedom, dignity, and human agency.'
+      description: 'Exploring how empathy, trust, communication and understanding can influence others positively without controlling or manipulating them.'
     },
     {
       title: 'Micro shifts Macro Impact: Awakening of A Common Man',
       status: 'Coming next',
-      description: 'A compelling reflection on how small human changes can ripple into collective transformation.'
+      description: 'Compelling reflections on how small changes in everyday thinking and action can awaken individual responsibility and create meaningful change in society.'
+    },
+    {
+      title: 'Privacy and Human Dignity controlled by Government Corporations',
+      status: 'Coming next',
+      description: 'A critical exploration of how technology and corporate power are reshaping privacy, personal freedom and the fundamental dignity of the individual.'
     }
   ],
   mediumArticles: [
