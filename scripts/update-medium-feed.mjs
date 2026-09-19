@@ -6,6 +6,7 @@ const publicationUrl = 'https://medium.com/purely-being-human';
 const archiveUrl = 'https://medium.com/purely-being-human/all';
 const outputPath = path.join(process.cwd(), 'medium-feed.json');
 const earliestAllowedDate = new Date('2026-04-23T00:00:00.000Z');
+const publicationSlug = 'purely-being-human';
 
 function normalizeText(value) {
   return String(value || '')
@@ -50,93 +51,148 @@ function normalizeMediumUrl(url) {
   return `https://medium.com${clean}`;
 }
 
-async function extractArchiveLinksWithPlaywright() {
-  const browser = await chromium.launch({ headless: true });
-
-  try {
-    const page = await browser.newPage({
-      userAgent:
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-    });
-
-    await page.goto(archiveUrl, { waitUntil: 'domcontentloaded', timeout: 120000 });
-    await page.waitForSelector('a[href*="/purely-being-human/"]', { timeout: 120000 });
-
-    // Scroll to load the publication feed completely before scraping links.
-    for (let i = 0; i < 20; i += 1) {
-      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      await page.waitForTimeout(700);
-    }
-
-    const links = await page.evaluate(() => {
-      const anchors = Array.from(document.querySelectorAll('a[href*="/purely-being-human/"]'));
-      const urls = [];
-      const seen = new Set();
-
-      for (const anchor of anchors) {
-        const href = anchor.getAttribute('href') || '';
-        if (!href || href.includes('/@') || href.includes('/followers')) {
-          continue;
-        }
-
-        const url = href.startsWith('http') ? href : `https://medium.com${href}`;
-        const clean = url.split('?')[0].split('#')[0].replace(/\/$/, '');
-        if (!clean.includes('/purely-being-human/')) {
-          continue;
-        }
-        if (!seen.has(clean)) {
-          seen.add(clean);
-          urls.push(clean);
+async function extractArchiveLinksWithPlaywright(slug) {
+  const query = `query PublicationContentDataQuery($ref: PublicationRef!, $first: Int!, $after: String!, $orderBy: PublicationPostsOrderBy, $filter: PublicationPostsFilter) {
+  publication: publicationByRef(ref: $ref) {
+    publicationPostsConnection(first: $first, after: $after, orderBy: $orderBy, filter: $filter) {
+      edges {
+        listedAt
+        node {
+          title
+          mediumUrl
+          firstPublishedAt
+          createdAt
         }
       }
-
-      return urls;
-    });
-
-    return links;
-  } finally {
-    await browser.close();
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
   }
-}
+}`;
 
-async function fetchArticleMetadata(articleUrl) {
-  try {
-    const response = await fetch(articleUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0',
-        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  let afterCursor = '';
+  let hasNextPage = true;
+  const posts = [];
+
+  while (hasNextPage) {
+    const payload = [
+      {
+        operationName: 'PublicationContentDataQuery',
+        variables: {
+          ref: {
+            slug,
+            domain: null,
+          },
+          first: 25,
+          after: afterCursor,
+          orderBy: {
+            publishedAt: 'DESC',
+          },
+          filter: {
+            published: true,
+          },
+        },
+        query,
       },
+    ];
+
+    const response = await fetch('https://medium.com/_/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      return {
-        title: articleUrl.split('/').filter(Boolean).at(-1) || 'Medium article',
-        url: articleUrl,
-        publishedAt: null,
-        summary: '',
-        image: '',
-      };
+      throw new Error(`GraphQL request failed with ${response.status}`);
     }
 
-    const htmlText = await response.text();
-    const title = normalizeText(
-      extractMetaTag(htmlText, 'og:title') ||
-        htmlText.match(/<title>(.*?)<\/title>/is)?.[1] ||
-        ''
-    );
-    const image = extractMetaTag(htmlText, 'og:image') || '';
-    const publishedAt = parsePublishedDate(
-      extractMetaTag(htmlText, 'article:published_time') ||
-        htmlText.match(/<time[^>]+datetime="([^"]+)"/is)?.[1] ||
-        ''
-    );
+    const json = await response.json();
+    const connection = json?.[0]?.data?.publication?.publicationPostsConnection;
+
+    if (!connection || !Array.isArray(connection.edges)) {
+      throw new Error('Missing publicationPostsConnection in GraphQL response');
+    }
+
+    for (const edge of connection.edges) {
+      const node = edge?.node || {};
+      posts.push({
+        title: node.title || '',
+        url: node.mediumUrl || '',
+        publishedAt: node.firstPublishedAt || edge?.listedAt || node.createdAt || null,
+      });
+    }
+
+    hasNextPage = Boolean(connection.pageInfo?.hasNextPage);
+    afterCursor = connection.pageInfo?.endCursor || '';
+    if (hasNextPage && !afterCursor) {
+      throw new Error('Missing endCursor while hasNextPage is true');
+    }
+  }
+
+  return posts;
+}
+
+async function fetchArticleMetadata(page, articleUrl) {
+  try {
+    const metadata = await page.evaluate(async (url) => {
+      const response = await fetch(url, {
+        headers: {
+          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        },
+      });
+
+      if (!response.ok) {
+        return {
+          title: '',
+          summary: '',
+          image: '',
+          publishedAt: null,
+        };
+      }
+
+      const htmlText = await response.text();
+
+      const readMeta = (name) => {
+        const patterns = [
+          new RegExp(`<meta[^>]+property="${name}"[^>]+content="([^"]+)"`, 'i'),
+          new RegExp(`<meta[^>]+content="([^"]+)"[^>]+property="${name}"`, 'i'),
+          new RegExp(`<meta[^>]+name="${name}"[^>]+content="([^"]+)"`, 'i'),
+          new RegExp(`<meta[^>]+content="([^"]+)"[^>]+name="${name}"`, 'i'),
+        ];
+
+        for (const pattern of patterns) {
+          const match = htmlText.match(pattern);
+          if (match && match[1]) {
+            return match[1];
+          }
+        }
+
+        return '';
+      };
+
+      const title = readMeta('og:title') || htmlText.match(/<title>(.*?)<\/title>/is)?.[1] || '';
+      const summary = readMeta('og:description') || '';
+      const image = readMeta('og:image') || '';
+      const publishedAt = readMeta('article:published_time') || htmlText.match(/<time[^>]+datetime="([^"]+)"/is)?.[1] || '';
+
+      return {
+        title,
+        summary,
+        image,
+        publishedAt,
+      };
+    }, articleUrl);
 
     return {
-      title: title || 'Medium article',
+      title: normalizeText(metadata.title || '') || 'Medium article',
       url: articleUrl,
-      publishedAt,
-      summary: normalizeText(extractMetaTag(htmlText, 'og:description') || ''),
-      image,
+      publishedAt: parsePublishedDate(metadata.publishedAt || ''),
+      summary: normalizeText(metadata.summary || ''),
+      image: metadata.image || '',
     };
   } catch {
     return {
@@ -150,40 +206,62 @@ async function fetchArticleMetadata(articleUrl) {
 }
 
 async function buildArticles() {
-  const archiveUrls = await extractArchiveLinksWithPlaywright();
+  const browser = await chromium.launch({ headless: true });
 
-  const articles = [];
-
-  for (const articleUrl of archiveUrls) {
-    const metadata = await fetchArticleMetadata(articleUrl);
-    if (!metadata.title || !metadata.url) {
-      continue;
-    }
-
-    const sourcePublishedAt = metadata.publishedAt || null;
-    const publishedAt = sourcePublishedAt ? new Date(sourcePublishedAt) : null;
-    if (publishedAt && publishedAt < earliestAllowedDate) {
-      continue;
-    }
-
-    articles.push({
-      title: metadata.title || 'Medium article',
-      url: metadata.url,
-      publishedAt: sourcePublishedAt,
-      summary: metadata.summary || '',
-      image: metadata.image || '',
+  try {
+    const page = await browser.newPage({
+      userAgent:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
     });
+
+    await page.goto(archiveUrl, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await page.waitForTimeout(3000);
+
+    const postRows = await page.evaluate(extractArchiveLinksWithPlaywright, publicationSlug);
+    const uniqueRows = Array.from(
+      new Map(
+        postRows
+          .map((post) => ({
+            title: normalizeText(post.title || ''),
+            url: normalizeMediumUrl(post.url || ''),
+            publishedAt: parsePublishedDate(post.publishedAt || ''),
+          }))
+          .filter((post) => post.url && post.url.includes('/purely-being-human/'))
+          .map((post) => [post.url, post])
+      ).values()
+    );
+
+    const articles = [];
+
+    for (const post of uniqueRows) {
+      const metadata = await fetchArticleMetadata(page, post.url);
+      const sourcePublishedAt = metadata.publishedAt || post.publishedAt || null;
+      const publishedAt = sourcePublishedAt ? new Date(sourcePublishedAt) : null;
+      if (!publishedAt || publishedAt < earliestAllowedDate) {
+        continue;
+      }
+
+      articles.push({
+        title: metadata.title || post.title || 'Medium article',
+        url: post.url,
+        publishedAt: sourcePublishedAt,
+        summary: metadata.summary || '',
+        image: metadata.image || '',
+      });
+    }
+
+    const uniqueArticles = Array.from(
+      new Map(articles.map((article) => [article.url, article])).values()
+    ).sort((a, b) => {
+      const aTime = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+      const bTime = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+      return bTime - aTime;
+    });
+
+    return uniqueArticles;
+  } finally {
+    await browser.close();
   }
-
-  const uniqueArticles = Array.from(
-    new Map(articles.map((article) => [article.url, article])).values()
-  ).sort((a, b) => {
-    const aTime = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
-    const bTime = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
-    return bTime - aTime;
-  });
-
-  return uniqueArticles;
 }
 
 try {
