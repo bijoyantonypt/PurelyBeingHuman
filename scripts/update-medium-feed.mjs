@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { chromium } from 'playwright';
 
 const publicationUrl = 'https://medium.com/purely-being-human';
 const archiveUrl = 'https://medium.com/purely-being-human/all';
@@ -16,12 +17,6 @@ function normalizeText(value) {
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-}
-
-function toAbsoluteUrl(value) {
-  if (!value) return '';
-  if (value.startsWith('http')) return value;
-  return new URL(value, publicationUrl).toString();
 }
 
 function extractMetaTag(htmlText, name) {
@@ -48,41 +43,60 @@ function parsePublishedDate(value) {
   return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
 }
 
-function extractArchiveArticleUrls(htmlText) {
-  const uniqueUrls = new Set();
-  const patterns = [
-    /https?:\/\/medium\.com\/purely-being-human\/[^"'?#\s]+/gi,
-    /\/purely-being-human\/[^"'?#\s]+/gi,
-  ];
-
-  for (const pattern of patterns) {
-    for (const match of htmlText.matchAll(pattern)) {
-      const raw = match[0];
-      const clean = raw.startsWith('http') ? raw : `https://medium.com${raw}`;
-      const finalUrl = clean.split('?')[0].split('#')[0].replace(/\/$/, '');
-      if (!finalUrl.includes('/purely-being-human/') || finalUrl === publicationUrl) {
-        continue;
-      }
-      uniqueUrls.add(finalUrl);
-    }
-  }
-
-  return [...uniqueUrls];
+function normalizeMediumUrl(url) {
+  if (!url) return '';
+  const clean = String(url).split('?')[0].split('#')[0].replace(/\/$/, '');
+  if (clean.startsWith('http')) return clean;
+  return `https://medium.com${clean}`;
 }
 
-async function fetchArchivePage() {
-  const response = await fetch(archiveUrl, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0',
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  });
+async function extractArchiveLinksWithPlaywright() {
+  const browser = await chromium.launch({ headless: true });
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch Medium archive page: ${response.status} ${response.statusText}`);
+  try {
+    const page = await browser.newPage({
+      userAgent:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    });
+
+    await page.goto(archiveUrl, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await page.waitForSelector('a[href*="/purely-being-human/"]', { timeout: 120000 });
+
+    // Scroll to load the publication feed completely before scraping links.
+    for (let i = 0; i < 20; i += 1) {
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(700);
+    }
+
+    const links = await page.evaluate(() => {
+      const anchors = Array.from(document.querySelectorAll('a[href*="/purely-being-human/"]'));
+      const urls = [];
+      const seen = new Set();
+
+      for (const anchor of anchors) {
+        const href = anchor.getAttribute('href') || '';
+        if (!href || href.includes('/@') || href.includes('/followers')) {
+          continue;
+        }
+
+        const url = href.startsWith('http') ? href : `https://medium.com${href}`;
+        const clean = url.split('?')[0].split('#')[0].replace(/\/$/, '');
+        if (!clean.includes('/purely-being-human/')) {
+          continue;
+        }
+        if (!seen.has(clean)) {
+          seen.add(clean);
+          urls.push(clean);
+        }
+      }
+
+      return urls;
+    });
+
+    return links;
+  } finally {
+    await browser.close();
   }
-
-  return await response.text();
 }
 
 async function fetchArticleMetadata(articleUrl) {
@@ -136,8 +150,7 @@ async function fetchArticleMetadata(articleUrl) {
 }
 
 async function buildArticles() {
-  const archiveHtml = await fetchArchivePage();
-  const archiveUrls = extractArchiveArticleUrls(archiveHtml);
+  const archiveUrls = await extractArchiveLinksWithPlaywright();
 
   const articles = [];
 
@@ -147,15 +160,16 @@ async function buildArticles() {
       continue;
     }
 
-    const publishedAt = metadata.publishedAt ? new Date(metadata.publishedAt) : null;
+    const sourcePublishedAt = metadata.publishedAt || null;
+    const publishedAt = sourcePublishedAt ? new Date(sourcePublishedAt) : null;
     if (publishedAt && publishedAt < earliestAllowedDate) {
       continue;
     }
 
     articles.push({
-      title: metadata.title,
+      title: metadata.title || 'Medium article',
       url: metadata.url,
-      publishedAt: metadata.publishedAt || null,
+      publishedAt: sourcePublishedAt,
       summary: metadata.summary || '',
       image: metadata.image || '',
     });
