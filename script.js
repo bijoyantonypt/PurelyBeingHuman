@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     mediumArticles: (feedData.articles || fallbackData.mediumArticles || []).map((article) => ({
       title: article.title,
       url: article.url,
-      readTime: article.readTime || 'Fresh article'
+      readTime: article.readTime || 'Fresh article',
+      image: article.image || ''
     }))
   };
 
@@ -97,9 +98,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       .map(
         (article) => `
           <a class="article-card" href="${article.url}" target="_blank" rel="noreferrer">
-            <span class="article-meta">${article.readTime}</span>
-            <h3>${article.title}</h3>
-            <span class="article-link">Read on Medium →</span>
+            ${article.image ? `<img class="article-thumb" src="${article.image}" alt="${article.title}" loading="lazy" />` : ''}
+            <div class="article-body">
+              <span class="article-meta">${article.readTime}</span>
+              <h3>${article.title}</h3>
+              <span class="article-link">Read on Medium →</span>
+            </div>
           </a>
         `
       )
@@ -111,9 +115,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         .map(
           (article) => `
             <a class="article-card" href="${article.url}" target="_blank" rel="noreferrer">
-              <span class="article-meta">${article.readTime}</span>
-              <h3>${article.title}</h3>
-              <span class="article-link">Read on Medium →</span>
+              ${article.image ? `<img class="article-thumb" src="${article.image}" alt="${article.title}" loading="lazy" />` : ''}
+              <div class="article-body">
+                <span class="article-meta">${article.readTime}</span>
+                <h3>${article.title}</h3>
+                <span class="article-link">Read on Medium →</span>
+              </div>
             </a>
           `
         )

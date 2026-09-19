@@ -25,6 +25,32 @@ function extractTagContent(item, tagName) {
   return '';
 }
 
+function extractImageUrl(item) {
+  const patterns = [
+    /<media:content[^>]*url="([^"]+)"/is,
+    /<media:thumbnail[^>]*url="([^"]+)"/is,
+    /<image>(.*?)<\/image>/is,
+    /<img[^>]+src="([^"]+)"/is,
+    /https?:\/\/[^\s"'<>]+(?:\.(?:jpg|jpeg|png|webp|gif|avif))(?:\?[^\s"'<>]+)?/is,
+  ];
+
+  for (const pattern of patterns) {
+    const match = item.match(pattern);
+    if (match) {
+      const value = match[1] || match[0];
+      if (typeof value === 'string' && value.startsWith('http')) {
+        return value;
+      }
+      const cleaned = String(value || '').replace(/.*?https?:\/\//i, 'https://');
+      if (cleaned.startsWith('http')) {
+        return cleaned;
+      }
+    }
+  }
+
+  return '';
+}
+
 function parseXmlArticles(xmlText) {
   const itemMatches = [...xmlText.matchAll(/<item>(.*?)<\/item>/gs)];
 
@@ -35,6 +61,7 @@ function parseXmlArticles(xmlText) {
       const link = extractTagContent(item, 'link');
       const pubDate = extractTagContent(item, 'pubDate');
       const description = extractTagContent(item, 'description');
+      const image = extractImageUrl(item);
 
       if (!title || !link) return null;
 
@@ -43,6 +70,7 @@ function parseXmlArticles(xmlText) {
         url: link,
         publishedAt: pubDate || null,
         summary: description || '',
+        image: image || '',
       };
     })
     .filter(Boolean)

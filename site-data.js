@@ -127,22 +127,26 @@ window.siteData = {
     {
       title: 'Why authentic living feels harder than it should',
       url: 'https://medium.com/purelybeinghuman',
-      readTime: '4 min read'
+      readTime: '4 min read',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80'
     },
     {
       title: 'The invisible pressure of being “always enough”',
       url: 'https://medium.com/purelybeinghuman',
-      readTime: '6 min read'
+      readTime: '6 min read',
+      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80'
     },
     {
       title: 'How quiet habits shape a deeper human life',
       url: 'https://medium.com/purelybeinghuman',
-      readTime: '5 min read'
+      readTime: '5 min read',
+      image: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80'
     },
     {
       title: 'What healing really looks like in everyday routines',
       url: 'https://medium.com/purelybeinghuman',
-      readTime: '7 min read'
+      readTime: '7 min read',
+      image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80'
     }
   ]
 };

@@ -8,9 +8,13 @@ on:
 jobs:
   sync-medium-feed:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -29,5 +33,5 @@ jobs:
             echo "No Medium feed changes to commit."
           else
             git commit -m "Update Medium publication feed"
-            git push
+            git push origin HEAD:${{ github.ref_name }}
           fi
