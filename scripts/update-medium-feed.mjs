@@ -3,6 +3,7 @@ import { chromium } from 'playwright';
 
 const publicationUrl = 'https://medium.com/purely-being-human';
 const archiveUrl = 'https://medium.com/purely-being-human/all';
+const rssUrl = 'https://medium.com/feed/purely-being-human';
 const outputFile = 'medium-feed.json';
 const earliestAllowedDate = new Date('2026-04-23T00:00:00.000Z');
 
@@ -29,6 +30,78 @@ function parseDate(value) {
   if (Number.isNaN(parsed.getTime())) return null;
   if (parsed < earliestAllowedDate) return null;
   return parsed.toISOString();
+}
+
+function extractTagContent(item, tagName) {
+  const patterns = [
+    new RegExp(`<${tagName}><!\\[CDATA\\[(.*?)\\]\\]><\\/${tagName}>`, 'is'),
+    new RegExp(`<${tagName}>(.*?)<\\/${tagName}>`, 'is'),
+  ];
+
+  for (const pattern of patterns) {
+    const match = item.match(pattern);
+    if (match && match[1]) {
+      return normalizeText(match[1]);
+    }
+  }
+
+  return '';
+}
+
+function extractImageFromXmlItem(item) {
+  const patterns = [
+    /<media:content[^>]*url="([^"]+)"/is,
+    /<media:thumbnail[^>]*url="([^"]+)"/is,
+    /<img[^>]+src="([^"]+)"/is,
+    /https?:\/\/[^\s"'<>]+(?:\.(?:jpg|jpeg|png|webp|gif|avif))(?:\?[^\s"'<>]+)?/is,
+  ];
+
+  const contentEncoded = item.match(/<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/is)?.[1] || '';
+  const sources = [contentEncoded, item].filter(Boolean);
+
+  for (const source of sources) {
+    for (const pattern of patterns) {
+      const match = source.match(pattern);
+      if (!match) continue;
+      const value = match[1] || match[0] || '';
+      if (String(value).startsWith('http')) return String(value);
+    }
+  }
+
+  return '';
+}
+
+function dedupeAndSort(articles) {
+  return Array.from(new Map(articles.map((article) => [article.url, article])).values())
+    .filter((article) => article.url && article.publishedAt)
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+}
+
+async function readExistingFeed() {
+  try {
+    const raw = await fs.readFile(outputFile, 'utf8');
+    const parsed = JSON.parse(raw);
+    const articles = Array.isArray(parsed.articles) ? parsed.articles : [];
+
+    return dedupeAndSort(
+      articles
+        .map((article) => {
+          const publishedAt = parseDate(article.publishedAt || '');
+          if (!publishedAt) return null;
+
+          return {
+            title: normalizeText(article.title || 'Medium article'),
+            url: normalizeMediumUrl(article.url || ''),
+            publishedAt,
+            summary: normalizeText(article.summary || ''),
+            image: article.image || '',
+          };
+        })
+        .filter(Boolean)
+    );
+  } catch {
+    return [];
+  }
 }
 
 async function fetchAllPosts(page) {
@@ -81,6 +154,40 @@ async function fetchAllPosts(page) {
   }
 
   return finalLinks;
+}
+
+async function fetchRssArticles() {
+  const response = await fetch(rssUrl, {
+    headers: {
+      Accept: 'application/rss+xml, application/xml, text/xml, */*',
+      'User-Agent': 'Mozilla/5.0',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`RSS request failed: ${response.status} ${response.statusText}`);
+  }
+
+  const xml = await response.text();
+  const itemMatches = [...xml.matchAll(/<item>(.*?)<\/item>/gs)];
+
+  const articles = itemMatches
+    .map((match) => {
+      const item = match[1];
+      const publishedAt = parseDate(extractTagContent(item, 'pubDate'));
+      if (!publishedAt) return null;
+
+      return {
+        title: normalizeText(extractTagContent(item, 'title') || 'Medium article'),
+        url: normalizeMediumUrl(extractTagContent(item, 'link')),
+        publishedAt,
+        summary: normalizeText(extractTagContent(item, 'description') || ''),
+        image: extractImageFromXmlItem(item),
+      };
+    })
+    .filter(Boolean);
+
+  return dedupeAndSort(articles);
 }
 
 async function fetchArticleMeta(page, url) {
@@ -178,7 +285,37 @@ async function buildArticles() {
 }
 
 try {
-  const articles = await buildArticles();
+  const existingArticles = await readExistingFeed();
+  let archiveArticles = [];
+  let rssArticles = [];
+
+  try {
+    archiveArticles = await buildArticles();
+    console.log(`Archive source returned ${archiveArticles.length} articles.`);
+  } catch (error) {
+    console.warn(`Archive source failed: ${error.message}`);
+  }
+
+  try {
+    rssArticles = await fetchRssArticles();
+    console.log(`RSS source returned ${rssArticles.length} articles.`);
+  } catch (error) {
+    console.warn(`RSS source failed: ${error.message}`);
+  }
+
+  let articles = [];
+  if (archiveArticles.length > 0) {
+    articles = dedupeAndSort([...existingArticles, ...rssArticles, ...archiveArticles]);
+  } else if (rssArticles.length > 0) {
+    articles = dedupeAndSort([...existingArticles, ...rssArticles]);
+  } else {
+    articles = existingArticles;
+  }
+
+  if (articles.length === 0) {
+    throw new Error('No article data available from archive, RSS, or existing feed');
+  }
+
   const payload = {
     publicationUrl,
     fetchedAt: new Date().toISOString(),
