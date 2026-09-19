@@ -26,6 +26,8 @@ function extractTagContent(item, tagName) {
 }
 
 function extractImageUrl(item) {
+  const contentEncoded = item.match(/<content:encoded><!\[CDATA\[(.*?)\]\]><\/content:encoded>/is)?.[1] || item;
+
   const patterns = [
     /<media:content[^>]*url="([^"]+)"/is,
     /<media:thumbnail[^>]*url="([^"]+)"/is,
@@ -35,7 +37,7 @@ function extractImageUrl(item) {
   ];
 
   for (const pattern of patterns) {
-    const match = item.match(pattern);
+    const match = contentEncoded.match(pattern);
     if (match) {
       const value = match[1] || match[0];
       if (typeof value === 'string' && value.startsWith('http')) {
