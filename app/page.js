@@ -4,7 +4,7 @@ const publishedBooks = [
     subtitle: 'Why The World Needs Compassion More Than Ever',
     image: 'Book_Images/Empathy.png',
     description:
-      'A book exploring empathy as a lived practice and a practical response to the fractures of modern life.',
+      'A compelling call to rediscover empathy and compassion as essential qualities for healing divisions, strengthening relationships and creating a more humane world',
     price: '₹299',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'rose',
@@ -14,7 +14,7 @@ const publishedBooks = [
     subtitle: 'The Heart of Leadership and Justice',
     image: 'Book_Images/Accountability.png',
     description:
-      'A reflection on personal responsibility, leadership, and the courage to do what is right.',
+      'An examination of why accountability is fundamental to responsible leadership, institutional integrity and a just society',
     price: '₹349',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'amber',
@@ -24,7 +24,7 @@ const publishedBooks = [
     subtitle: 'Understanding the fire within',
     image: 'Book_Images/Anger.png',
     description:
-      'A close look at anger as signal, pressure, and possibility for honest self-understanding.',
+      'An insightful exploration of anger as both a natural human emotion and a force that can either guide us constructively or undermine our relationships and well-being',
     price: '₹279',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'green',
@@ -34,20 +34,20 @@ const publishedBooks = [
     subtitle: 'The Cancer that Destroys Mankind',
     image: 'Book_Images/Hatred.png',
     description:
-      'An examination of how hatred forms, spreads, and corrodes the human spirit and society.',
+      'An urgent exploration of how hatred is created, propagated and sustained and why confronting it is essential for a more peaceful and humane world',
     price: '₹329',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
-    accent: 'indigo',
+    accent: 'cyan',
   },
   {
     title: 'Redefining Neutrality',
-    subtitle: 'The space between sides',
+    subtitle: 'The Hidden Connection Between Injustice and Neutrality',
     image: 'Book_Images/Neutrality.png',
     description:
-      'A reconsideration of neutrality as an active choice that may either uphold justice or enable harm.',
+      'A thought provoking examination of whether remaining neutral in the face of injustice can unintentionally allow injustice to prevail',
     price: '₹289',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
-    accent: 'violet',
+    accent: 'indigo',
   },
 ];
 
@@ -68,7 +68,7 @@ const upcomingBooks = [
     description: 'Exploring how empathy, trust, communication and understanding can influence others positively without controlling or manipulating them.'
   },
   {
-    title: 'Micro shifts Macro Impact: Awakening of A Common Man',
+    title: 'Micro shifts - Macro Impact: Awakening of A Common Man',
     status: 'Coming next',
     description: 'Compelling reflections on how small changes in everyday thinking and action can awaken individual responsibility and create meaningful change in society.'
   },
@@ -134,9 +134,9 @@ export default function HomePage() {
         <section className="hero">
           <div className="hero-copy">
             <p className="eyebrow">A human-first publishing brand</p>
-            <h1>Books that help people live more honestly, deeply, and fully.</h1>
+            <h1>Exploring the wisdom, emotions and everyday choices that help us live more consciously, meaningfully and fully</h1>
             <p className="lede">
-              PurelyBeingHuman brings together reflective writing, meaningful growth, and practical wisdom for readers looking to live with more self-awareness and purpose.
+              PurelyBeingHuman brings together reflective writing, practical wisdom and deeper human understanding for those seeking to live with greater awareness, meaning and purpose.
             </p>
             <div className="cta-row">
               <a className="primary-button" href="#books">Explore the collection</a>
@@ -163,7 +163,7 @@ export default function HomePage() {
               <span className="panel-pill">Featured</span>
               <h2>The Courage to Be Real</h2>
               <p>
-                A reader favourite centred on healing, authenticity, and becoming more aligned with your truest self.
+                An invitation to heal, live authentically and become more fully who you are.
               </p>
             </div>
             <div className="mini-grid">

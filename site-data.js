@@ -5,7 +5,7 @@ window.siteData = {
       subtitle: 'Why The World Needs Compassion More Than Ever',
       image: 'Book_Images/Empathy.png',
       description:
-        'A book exploring empathy as a lived practice...',
+        'A compelling call to rediscover empathy and compassion as essential qualities for healing divisions, strengthening relationships and creating a more humane world',
       availability: [
         { name: 'Amazon', url: 'https://www.amazon.com/dp/B0H2WBP4WY' },
         { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0H2WBP4WY?&tag=notionpcom-21' },
@@ -20,7 +20,7 @@ window.siteData = {
       subtitle: 'The Heart of Leadership and Justice',
       image: 'Book_Images/Accountability.png',
       description:
-        'A reflection on personal responsibility...',
+        'An examination of why accountability is fundamental to responsible leadership, institutional integrity and a just society',
       availability: [
         { name: 'Amazon', url: 'https://www.amazon.com/dp/B0GTZYKYQ9' },
         { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0GTZYKYQ9?&tag=notionpcom-21' },
@@ -35,7 +35,7 @@ window.siteData = {
       subtitle: 'Understanding the fire within',
       image: 'Book_Images/Anger.png',
       description:
-        'A close look at anger as signal...',
+        'An insightful exploration of anger as both a natural human emotion and a force that can either guide us constructively or undermine our relationships and well-being',
       availability: [
         { name: 'Amazon', url: 'https://www.amazon.com/dp/B0F6ZQKGYL' },
         { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0F6ZQKGYL?&tag=notionpcom-21' },
@@ -50,7 +50,7 @@ window.siteData = {
       subtitle: 'The Cancer that Destroys Mankind',
       image: 'Book_Images/Hatred.png',
       description:
-        'An examination of how hatred forms...',
+        'An urgent exploration of how hatred is created, propagated and sustained and why confronting it is essential for a more peaceful and humane world',
       availability: [
         { name: 'Amazon', url: 'https://www.amazon.com/HATRED-Cancer-that-Destroys-Mankind/dp/9334093994/ref=sr_1_6?crid=2NJ3K0JI7H77P&dib=eyJ2IjoiMSJ9.oaHfQssU3FAMxL_poMh2e_PnC62LgQcZZ7opdD0yh9BGJyidouFBkgLSRZzmTapd2mRjbWeVAmIk4ZNYGG_6uPqW_nJ3SG99vgYueNEUz1I.o0_-YUkzbCE5ZmtdTDO6EAIEGi6AWXhENlna_NdImvg&dib_tag=se&keywords=Tomy+G+Poovattil&qid=1789375045&sprefix=tomy+g+poovattil%2Caps%2C315&sr=8-6' },
         { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0DVTH88TZ?&tag=notionpcom-21' },
@@ -62,10 +62,10 @@ window.siteData = {
     },
     {
       title: 'Redefining Neutrality',
-      subtitle: 'The space between sides',
+      subtitle: 'The Hidden Connection Between Injustice and Neutrality',
       image: 'Book_Images/Neutrality.png',
       description:
-        'A reconsideration of neutrality as an active...',
+        'A thought provoking examination of whether remaining neutral in the face of injustice can unintentionally allow injustice to prevail',
       availability: [
         { name: 'Amazon', url: 'https://www.amazon.com/dp/B0D927HDML' },
         { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0D927HDML?&tag=notionpcom-21' },
@@ -93,7 +93,7 @@ window.siteData = {
       description: 'Exploring how empathy, trust, communication and understanding can influence others positively without controlling or manipulating them.'
     },
     {
-      title: 'Micro shifts Macro Impact: Awakening of A Common Man',
+      title: 'Micro shifts - Macro Impact: Awakening of A Common Man',
       status: 'Coming next',
       description: 'Compelling reflections on how small changes in everyday thinking and action can awaken individual responsibility and create meaningful change in society.'
     },
