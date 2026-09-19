@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
@@ -28,7 +28,19 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Fetch latest Medium posts
-        run: node scripts/update-medium-feed.mjs
+        run: |
+          for attempt in 1 2 3; do
+            echo "Medium sync attempt $attempt..."
+            if node scripts/update-medium-feed.mjs; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Attempt $attempt failed, retrying in 20 seconds..."
+              sleep 20
+            fi
+          done
+          echo "Medium sync failed after 3 attempts."
+          exit 1
 
       - name: Commit and push updated feed
         run: |
