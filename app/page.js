@@ -119,7 +119,7 @@ export default function HomePage() {
         <div className="brand-block">
           <img className="brand-mark brand-logo" src="Book_Images/PurelyBeingHuman%20Profile.jpg" alt="PurelyBeingHuman profile" />
           <div>
-            <p className="brand-name">PurelyBeingHuman</p>
+            <p className="brand-name">Purely Being Human</p>
             <span className="brand-tag">Practical wisdom for living a more conscious and meaningful life</span>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function HomePage() {
 
       <footer className="site-footer">
         <div>
-          <p className="brand-name">PurelyBeingHuman</p>
+          <p className="brand-name">Purely Being Human</p>
           <p>Exploring the human experience through reflection, wisdom and meaningful living.</p>
         </div>
         <div className="footer-links">
