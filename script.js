@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const fallbackData = window.siteData || {
     books: [],
     upcomingBooks: [],
-    offers: [],
     mediumArticles: []
   };
 

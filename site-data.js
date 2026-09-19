@@ -84,7 +84,7 @@ window.siteData = {
     },
     {
       title: 'The Mirror Within',
-      status: 'Pre-order open',
+      status: 'Coming next',
       description: 'An inward journey toward self-awareness, truth-telling, and deeper human growth.'
     },
     {
@@ -94,30 +94,8 @@ window.siteData = {
     },
     {
       title: 'Micro shifts Macro Impact: Awakening of A Common Man',
-      status: 'Announcing soon',
+      status: 'Coming next',
       description: 'A compelling reflection on how small human changes can ripple into collective transformation.'
-    }
-  ],
-  offers: [
-    {
-      code: 'PBH10',
-      title: '10% Off',
-      details: 'Applicable on all published titles across Amazon, Flipkart and NotionPress.'
-    },
-    {
-      code: 'HUMANBUNDLE',
-      title: 'Bundle Deal',
-      details: 'Get 2 books together and save 15% with a combined purchase offer.'
-    },
-    {
-      code: 'READANDRISE',
-      title: 'Reader Special',
-      details: 'Use this code for a limited-time discount and free shipping on selected stores.'
-    },
-    {
-      code: 'NEWAUTHOR20',
-      title: 'New Release Offer',
-      details: 'Special launch discount for brand-new readers discovering PurelyBeingHuman.'
     }
   ],
   mediumArticles: [
