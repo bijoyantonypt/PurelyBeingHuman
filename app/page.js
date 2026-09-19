@@ -53,24 +53,24 @@ const publishedBooks = [
 
 const upcomingBooks = [
   {
-    title: 'The Belonging Blueprint',
+    title: 'From Reaction to Response: Mastering the Pause',
     status: 'Launching soon',
-    description: 'A reflective guide to building secure, meaningful connection in modern life.',
+    description: 'A practical guide to emotional steadiness, wise timing, and the power of meaningful pause.',
   },
   {
-    title: 'Unlearning Fear',
+    title: 'The Mirror Within',
     status: 'Pre-order open',
-    description: 'A personal journey into fear, courage, and the freedom of beginning again.',
+    description: 'An inward journey toward self-awareness, truth-telling, and deeper human growth.',
   },
   {
-    title: 'Rooted in Wonder',
+    title: 'Privacy and Human Dignity controlled by Government Corporations',
     status: 'Coming next',
-    description: 'A contemplative look at curiosity, awe, and deepening presence in a noisy world.',
+    description: 'A critical exploration of how institutions shape personal freedom, dignity, and human agency.',
   },
   {
-    title: 'The Beauty of Becoming',
+    title: 'Micro shifts Macro Impact: Awakening of A Common Man',
     status: 'Announcing soon',
-    description: 'A collection of essays on transformation, patience, and becoming more human.',
+    description: 'A compelling reflection on how small human changes can ripple into collective transformation.',
   },
 ];
 
@@ -163,15 +163,15 @@ export default function HomePage() {
             </div>
             <ul className="stats-row" aria-label="Brand statistics">
               <li>
-                <strong>06</strong>
+                <strong>5</strong>
                 <span>Published books</span>
               </li>
               <li>
-                <strong>04</strong>
+                <strong>5</strong>
                 <span>Upcoming titles</span>
               </li>
               <li>
-                <strong>03</strong>
+                <strong>3</strong>
                 <span>Store partners</span>
               </li>
             </ul>
@@ -189,10 +189,6 @@ export default function HomePage() {
               <div className="panel-card">
                 <span>Available on</span>
                 <strong>Amazon • Flipkart • NotionPress</strong>
-              </div>
-              <div className="panel-card">
-                <span>Coupon codes</span>
-                <strong>PBH10 • HUMANBUNDLE</strong>
               </div>
             </div>
           </div>
