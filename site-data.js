@@ -3,6 +3,7 @@ window.siteData = {
     {
       title: 'Empathy Revolution',
       subtitle: 'Why The World Needs Compassion More Than Ever',
+      image: 'Book_Images/Empathy.png',
       description:
         'A book exploring empathy as a lived practice...',
       availability: [
@@ -17,6 +18,7 @@ window.siteData = {
     {
       title: 'Accountability',
       subtitle: 'The Heart of Leadership and Justice',
+      image: 'Book_Images/Accountability.png',
       description:
         'A reflection on personal responsibility...',
       availability: [
@@ -31,6 +33,7 @@ window.siteData = {
     {
       title: 'Anger',
       subtitle: 'Understanding the fire within',
+      image: 'Book_Images/Anger.png',
       description:
         'A close look at anger as signal...',
       availability: [
@@ -45,6 +48,7 @@ window.siteData = {
     {
       title: 'Hatred',
       subtitle: 'The Cancer that Destroys Mankind',
+      image: 'Book_Images/Hatred.png',
       description:
         'An examination of how hatred forms...',
       availability: [
@@ -59,6 +63,7 @@ window.siteData = {
     {
       title: 'Redefining Neutrality',
       subtitle: 'The space between sides',
+      image: 'Book_Images/Neutrality.png',
       description:
         'A reconsideration of neutrality as an active...',
       availability: [

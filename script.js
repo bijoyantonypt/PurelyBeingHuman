@@ -35,9 +35,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       .map(
         (book) => `
           <article class="book-card accent-${book.accent}">
-            <div class="book-cover"><span>${book.title.split(' ')[0]}</span></div>
+            <div class="book-cover">
+              <img class="book-cover-image" src="${book.image || ''}" alt="${book.title}" loading="lazy" />
+            </div>
             <div class="book-content">
-              <p class="book-price">${book.price}</p>
+              <p class="book-price">${book.price || 'Available now'}</p>
               <h3>${book.title}</h3>
               <p class="book-subtitle">${book.subtitle}</p>
               <p>${book.description}</p>

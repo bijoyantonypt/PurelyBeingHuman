@@ -1,57 +1,53 @@
 const publishedBooks = [
   {
-    title: 'The Courage to Be Real',
-    subtitle: 'Self-acceptance and human truth',
+    title: 'Empathy Revolution',
+    subtitle: 'Why The World Needs Compassion More Than Ever',
+    image: 'Book_Images/Empathy.png',
     description:
-      'A compassionate guide to reclaiming identity, inner honesty, and the confidence to live without masks.',
+      'A book exploring empathy as a lived practice and a practical response to the fractures of modern life.',
     price: '₹299',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'rose',
   },
   {
-    title: 'Living Beyond Labels',
-    subtitle: 'Freedom over identity',
+    title: 'Accountability',
+    subtitle: 'The Heart of Leadership and Justice',
+    image: 'Book_Images/Accountability.png',
     description:
-      'A reflection on how labels, expectations, and fear shape our choices—and how to move beyond them.',
+      'A reflection on personal responsibility, leadership, and the courage to do what is right.',
     price: '₹349',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'amber',
   },
   {
-    title: 'The Human Reset',
-    subtitle: 'The art of healing and renewal',
+    title: 'Anger',
+    subtitle: 'Understanding the fire within',
+    image: 'Book_Images/Anger.png',
     description:
-      'A deeply personal framework for emotional clarity, recovery, and starting again with awareness.',
+      'A close look at anger as signal, pressure, and possibility for honest self-understanding.',
     price: '₹279',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'green',
   },
   {
-    title: 'Quiet Strength',
-    subtitle: 'Inner resilience in everyday life',
+    title: 'Hatred',
+    subtitle: 'The Cancer that Destroys Mankind',
+    image: 'Book_Images/Hatred.png',
     description:
-      'Practical and thoughtful stories exploring calm leadership, emotional endurance, and personal growth.',
+      'An examination of how hatred forms, spreads, and corrodes the human spirit and society.',
     price: '₹329',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'indigo',
   },
   {
-    title: 'Purpose in the Ordinary',
-    subtitle: 'Meaning in daily living',
+    title: 'Redefining Neutrality',
+    subtitle: 'The space between sides',
+    image: 'Book_Images/Neutrality.png',
     description:
-      'An invitation to discover significance in small routines, quiet decisions, and everyday human moments.',
+      'A reconsideration of neutrality as an active choice that may either uphold justice or enable harm.',
     price: '₹289',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'violet',
-  },
-  {
-    title: 'Beyond Survival',
-    subtitle: 'Thriving with intention',
-    description:
-      'A practical exploration of meaningful living, emotional wellbeing, and conscious human flourishing.',
-    price: '₹399',
-    availability: ['Amazon', 'Flipkart', 'NotionPress'],
-    accent: 'cyan',
   },
 ];
 
@@ -139,7 +135,7 @@ export default function HomePage() {
     <div className="page-shell">
       <header className="topbar">
         <div className="brand-block">
-          <div className="brand-mark">PBH</div>
+          <img className="brand-mark brand-logo" src="Book_Images/PurelyBeingHuman%20Profile.jpg" alt="PurelyBeingHuman profile" />
           <div>
             <p className="brand-name">PurelyBeingHuman</p>
             <span className="brand-tag">Books • Ideas • Growth</span>
@@ -205,14 +201,14 @@ export default function HomePage() {
         <section id="books" className="section-block">
           <div className="section-heading">
             <p className="eyebrow">Published works</p>
-            <h2>Six books already in the world</h2>
+            <h2>Five books already in the world</h2>
           </div>
 
           <div className="book-grid">
             {publishedBooks.map((book) => (
               <article key={book.title} className={`book-card accent-${book.accent}`}>
                 <div className="book-cover">
-                  <span>{book.title.split(' ')[0]}</span>
+                  <img className="book-cover-image" src={book.image} alt={book.title} loading="lazy" />
                 </div>
                 <div className="book-content">
                   <p className="book-price">{book.price}</p>
