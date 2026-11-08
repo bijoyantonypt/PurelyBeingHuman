@@ -1,6 +1,18 @@
 window.siteData = {
   books: [
     {
+      title: 'Reaction to Response',
+      subtitle: 'Mastering the Pause',
+      image: 'Book_Images/From_Reaction_To_Response.png',
+      description: 'A practical guide to the power of pausing before reacting and how a moment of awareness can transform your responses, relationships and life.',
+      availability: [
+        { name: 'Flipkart', url: 'https://www.flipkart.com/from-reaction-to-response/p/itm6b3bfa03433cb?pid=9798908347891&affid=editornoti&affid=editornoti' },
+        { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0HQ6WCYNB?&tag=notionpcom-21' },
+        { name: 'Notion Press', url: 'https://notionpress.com/in/read/from-reaction-to-response' }
+      ],
+      accent: 'violet'
+    },
+    {
       title: 'Empathy Revolution',
       subtitle: 'Why The World Needs Compassion More Than Ever',
       image: 'Book_Images/Empathy.png',
@@ -77,11 +89,6 @@ window.siteData = {
     },
   ],
   upcomingBooks: [
-    {
-      title: 'Reaction to Response',
-      status: 'Launching soon',
-      description: 'A practical guide discovering the power of pausing before reacting and learn how a moment of awareness can transform your responses, relationships and life.'
-    },
     {
       title: 'The Mirror Within',
       status: 'Coming next',

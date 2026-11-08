@@ -1,5 +1,19 @@
 const publishedBooks = [
   {
+    title: 'Reaction to Response',
+    subtitle: 'Mastering the Pause',
+    image: 'Book_Images/From_Reaction_To_Response.png',
+    description: 'A practical guide to the power of pausing before reacting and how a moment of awareness can transform your responses, relationships and life.',
+    price: 'Available now',
+    availability: ['Flipkart', 'Amazon India', 'Notion Press'],
+    links: [
+      { name: 'Flipkart', url: 'https://www.flipkart.com/from-reaction-to-response/p/itm6b3bfa03433cb?pid=9798908347891&affid=editornoti&affid=editornoti' },
+      { name: 'Amazon India', url: 'https://www.amazon.in/dp/B0HQ6WCYNB?&tag=notionpcom-21' },
+      { name: 'Notion Press', url: 'https://notionpress.com/in/read/from-reaction-to-response' },
+    ],
+    accent: 'violet',
+  },
+  {
     title: 'Empathy Revolution',
     subtitle: 'Why The World Needs Compassion More Than Ever',
     image: 'Book_Images/Empathy.png',
@@ -52,11 +66,6 @@ const publishedBooks = [
 ];
 
 const upcomingBooks = [
-  {
-    title: 'Reaction to Response',
-    status: 'Launching soon',
-    description: 'A practical guide discovering the power of pausing before reacting and learn how a moment of awareness can transform your responses, relationships and life.',
-  },
   {
     title: 'The Mirror Within',
     status: 'Pre-order open',
@@ -134,9 +143,9 @@ export default function HomePage() {
         <section className="hero">
           <div className="hero-copy">
             <p className="eyebrow">A human-first publishing brand</p>
-            <h1>Books that help people live more honestly, deeply, and fully.</h1>
+            <h1>Books that help people live more honestly, deeply and fully.</h1>
             <p className="lede">
-              PurelyBeingHuman brings together reflective writing, meaningful growth, and practical wisdom for readers looking to live with more self-awareness and purpose.
+              PurelyBeingHuman brings together reflective writing, meaningful growth and practical wisdom for readers looking to live with more self-awareness and purpose.
             </p>
             <div className="cta-row">
               <a className="primary-button" href="#books">Explore the collection</a>
@@ -144,11 +153,11 @@ export default function HomePage() {
             </div>
             <ul className="stats-row" aria-label="Brand statistics">
               <li>
-                <strong>5</strong>
+                <strong>6</strong>
                 <span>Published books</span>
               </li>
               <li>
-                <strong>5</strong>
+                <strong>4</strong>
                 <span>Upcoming titles</span>
               </li>
               <li>
@@ -163,7 +172,7 @@ export default function HomePage() {
               <span className="panel-pill">Featured</span>
               <h2>The Courage to Be Real</h2>
               <p>
-                A reader favourite centred on healing, authenticity, and becoming more aligned with your truest self.
+                A reader favourite centred on healing, authenticity and becoming more aligned with your truest self.
               </p>
             </div>
             <div className="mini-grid">
@@ -178,7 +187,7 @@ export default function HomePage() {
         <section id="books" className="section-block">
           <div className="section-heading">
             <p className="eyebrow">Published works</p>
-            <h2>Five books already in the world</h2>
+            <h2>Six books already in the world</h2>
           </div>
 
           <div className="book-grid">
@@ -193,9 +202,9 @@ export default function HomePage() {
                   <p className="book-subtitle">{book.subtitle}</p>
                   <p>{book.description}</p>
                   <div className="store-tags">
-                    {book.availability.map((store) => (
-                      <a key={store} href={storeLinks[store]} target="_blank" rel="noreferrer">
-                        {store}
+                    {(book.links || book.availability.map((store) => ({ name: store, url: storeLinks[store] }))).map((store) => (
+                      <a key={store.name} href={store.url} target="_blank" rel="noreferrer">
+                        {store.name}
                       </a>
                     ))}
                   </div>
@@ -213,10 +222,23 @@ export default function HomePage() {
 
           <div className="upcoming-grid">
             {upcomingBooks.map((book) => (
-              <article key={book.title} className="upcoming-card">
-                <span className="badge">{book.status}</span>
-                <h3>{book.title}</h3>
-                <p>{book.description}</p>
+              <article key={book.title} className={`upcoming-card${book.image ? ' upcoming-card-with-cover' : ''}`}>
+                {book.image ? <img className="upcoming-cover" src={book.image} alt={`${book.title}: ${book.subtitle || 'book cover'}`} loading="lazy" /> : null}
+                <div className="upcoming-content">
+                  <span className="badge">{book.status}</span>
+                  <h3>{book.title}</h3>
+                  {book.subtitle ? <p className="upcoming-subtitle">{book.subtitle}</p> : null}
+                  <p>{book.description}</p>
+                  {book.availability?.length ? (
+                    <div className="store-tags">
+                      {book.availability.map((store) => (
+                        <a key={store.name} href={store.url} target="_blank" rel="noreferrer">
+                          {store.name}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               </article>
             ))}
           </div>
@@ -246,7 +268,7 @@ export default function HomePage() {
       <footer className="site-footer">
         <div>
           <p className="brand-name">PurelyBeingHuman</p>
-          <p>Writing for a more conscious, compassionate, and authentic life.</p>
+          <p>Writing for a more conscious, compassionate and authentic life.</p>
         </div>
         <div className="footer-links">
           <a href="#books">Books</a>

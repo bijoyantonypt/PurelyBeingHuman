@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="420" viewBox="0 0 180 420" fill="none" role="img" aria-labelledby="title description">
+  <title id="title">Holographic human figure</title>
+  <desc id="description">A luminous blue, full-body human outline on a transparent background.</desc>
+  <defs>
+    <linearGradient id="metal" x1="20" y1="70" x2="160" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d9ffff" />
+      <stop offset=".38" stop-color="#5de8f0" />
+      <stop offset=".72" stop-color="#4aaecb" />
+      <stop offset="1" stop-color="#c4ffff" />
+    </linearGradient>
+    <radialGradient id="body-glow" cx="0" cy="0" r="1" gradientTransform="matrix(0 178 -72 0 90 205)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4fdce8" stop-opacity=".2" />
+      <stop offset="1" stop-color="#4fdce8" stop-opacity="0" />
+    </radialGradient>
+    <filter id="aura" x="-40%" y="-15%" width="180%" height="140%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <ellipse cx="90" cy="218" rx="68" ry="174" fill="url(#body-glow)" />
+  <g stroke="url(#metal)" stroke-linecap="round" stroke-linejoin="round" filter="url(#aura)">
+    <path d="M90 13c-14 0-23 11-23 27 0 14 8 26 19 30m4-57c14 0 23 11 23 27 0 14-8 26-19 30" stroke-width="2.5" />
+    <path d="M79 67v11m22-11v11M78 73c-13 3-27 10-35 22-7 11-12 32-19 52L13 190c-2 8 4 11 8 4l21-37 12-33-2 52c0 20 7 37 15 51l-9 47-12 65-10 45c-2 9 4 14 11 14 6 0 10-4 11-11l17-68 14-57 14 57 17 68c1 7 5 11 11 11 7 0 13-5 11-14l-10-45-12-65-9-47c8-14 15-31 15-51l-2-52 12 33 21 37c4 7 10 4 8-4l-11-43c-7-20-12-41-19-52-8-12-22-19-35-22" stroke-width="2.2" />
+    <path d="M78 78c-8 8-13 22-14 39l7 49 8 36-9 26m31-150c8 8 13 22 14 39l-7 49-8 36 9 26M71 101c12 7 26 7 38 0m-39 24c12 9 28 9 40 0m-38 25c11 9 25 9 36 0m-31 26c8 7 19 7 28 0m-31 27c8 8 26 8 34 0m-30 26c7 7 19 7 26 0m-24 19 13 11 13-11m-21 25-8 42m24-42 8 42m-37 12 19 9 19-9" stroke-opacity=".78" stroke-width="1.25" />
+    <path d="M79 74 61 91l-9 38m49-55 18 17 9 38M52 136l18 13m58-13-18 13M69 188l21 8 21-8m-43 35 22 9 22-9m-29 27 7 8 7-8m-27 40 20 9 20-9m-28 47 8 12 8-12m-27 36 19 8 19-8" stroke-opacity=".7" stroke-width="1.1" />
+    <path d="M77 26h26m-34 11h42m-41 12h40M80 61l10 8 10-8" stroke-opacity=".68" stroke-width="1" />
+  </g>
+  <g fill="#d9ffff" filter="url(#aura)">
+    <circle cx="90" cy="82" r="2.2" />
+    <circle cx="62" cy="99" r="2" />
+    <circle cx="118" cy="99" r="2" />
+    <circle cx="52" cy="143" r="1.8" />
+    <circle cx="128" cy="143" r="1.8" />
+    <circle cx="72" cy="173" r="1.7" />
+    <circle cx="108" cy="173" r="1.7" />
+    <circle cx="90" cy="198" r="2.2" />
+    <circle cx="73" cy="232" r="1.7" />
+    <circle cx="107" cy="232" r="1.7" />
+    <circle cx="81" cy="284" r="1.7" />
+    <circle cx="99" cy="284" r="1.7" />
+    <circle cx="68" cy="350" r="1.8" />
+    <circle cx="112" cy="350" r="1.8" />
+    <circle cx="57" cy="403" r="2.2" />
+    <circle cx="123" cy="403" r="2.2" />
+  </g>
+</svg>

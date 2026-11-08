@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }))
   };
 
+  const bookAnchor = (title) =>
+    `book-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+
   const renderBooks = () => {
     const bookGrid = document.getElementById('bookGrid');
     if (!bookGrid || !data.books) return;
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     bookGrid.innerHTML = data.books
       .map(
         (book) => `
-          <article class="book-card accent-${book.accent}">
+          <article id="${bookAnchor(book.title)}" class="book-card accent-${book.accent}">
             <div class="book-cover">
               <img class="book-cover-image" src="${book.image || ''}" alt="${book.title}" loading="lazy" />
             </div>
@@ -82,10 +85,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     upcomingGrid.innerHTML = data.upcomingBooks
       .map(
         (book) => `
-          <article class="upcoming-card">
-            <span class="badge">${book.status}</span>
-            <h3>${book.title}</h3>
-            <p>${book.description}</p>
+          <article id="${bookAnchor(book.title)}" class="upcoming-card${book.image ? ' upcoming-card-with-cover' : ''}">
+            ${book.image ? `<img class="upcoming-cover" src="${book.image}" alt="${book.title}: ${book.subtitle || 'book cover'}" loading="lazy" />` : ''}
+            <div class="upcoming-content">
+              <span class="badge">${book.status}</span>
+              <h3>${book.title}</h3>
+              ${book.subtitle ? `<p class="upcoming-subtitle">${book.subtitle}</p>` : ''}
+              <p>${book.description}</p>
+              ${book.availability?.length ? `<div class="store-tags">${book.availability.map((store) => `<a href="${store.url}" target="_blank" rel="noreferrer">${store.name}</a>`).join('')}</div>` : ''}
+            </div>
           </article>
         `
       )
