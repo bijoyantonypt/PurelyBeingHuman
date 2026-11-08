@@ -100,7 +100,7 @@ window.siteData = {
     {
       title: 'Privacy and Human Dignity in a World Controlled by Corporations',
       status: 'Coming next',
-      description: 'A critical exploration of how technology and corporate power are reshaping privacy, personal freedom and the fundamental dignity of the individual.'
+      description: 'A critical exploration of how corporate power is reshaping privacy, personal freedom and the fundamental dignity of the individual.'
     }
   ],
   mediumArticles: [

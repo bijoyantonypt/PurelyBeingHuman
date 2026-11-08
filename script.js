@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+
+    document.querySelectorAll('.section-block, .closing-panel').forEach((section) => {
+      section.classList.add('reveal-on-scroll');
+      revealObserver.observe(section);
+    });
+  }
+
   const fallbackData = window.siteData || {
     books: [],
     upcomingBooks: [],
