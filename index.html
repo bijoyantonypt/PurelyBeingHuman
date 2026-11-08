@@ -1,124 +1,436 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="PurelyBeingHuman brings together inspiring books, exclusive offers, and thoughtful articles focused on authentic living."
-    />
-    <title>PurelyBeingHuman | Books, Offers & Articles</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="site-data.js"></script>
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <div class="brand-block">
-          <img class="brand-mark brand-logo" src="Book_Images/PurelyBeingHuman%20Profile.jpg" alt="PurelyBeingHuman profile" />
-          <div>
-            <p class="brand-name">PurelyBeingHuman</p>
-            <span class="brand-tag">Books • Ideas • Growth</span>
-          </div>
-        </div>
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="#books">Books</a>
-          <a href="#upcoming">Upcoming</a>
-          <a href="#articles">Medium</a>
-        </nav>
-      </header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="PurelyBeingHuman encourages independent thinking, honest self-reflection, empathy, accountability, and the values that make us human."
+  >
+  <meta name="theme-color" content="#f6efe8">
+  <title>PurelyBeingHuman | Read, Reflect, Understand, Transform</title>
 
-      <main>
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">A human-first publishing brand</p>
-            <h1>Books that help people live more honestly, deeply, and fully.</h1>
-            <p class="lede">
-              PurelyBeingHuman brings together reflective writing, meaningful growth, and practical wisdom for readers looking to live with more self-awareness and purpose.
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-data.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand-block" href="#home" aria-label="PurelyBeingHuman home">
+        <span class="brand-logo">
+          <img
+            class="brand-mark"
+            src="Book_Images/PurelyBeingHuman%20Profile.jpg"
+            alt=""
+            width="92"
+            height="92"
+          >
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">PurelyBeingHuman</span>
+          <span class="brand-tag">Not to tell you what to think, but to make you think.</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#purpose">Purpose</a>
+        <a href="#ideas">Core ideas</a>
+        <a href="#why-follow">Why follow</a>
+        <a href="#books">Books</a>
+        <a href="#articles">Articles</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">A space for reflection and independent thought</p>
+          <h1 id="hero-title">Not to tell you what to think, but to make you think.</h1>
+          <p class="lede">
+            PurelyBeingHuman explores the ideas, choices, and values that make us
+            human. Through reflective articles and books, it invites you to look
+            beyond assumptions, question your own perspectives, and connect
+            personal growth with social responsibility.
+          </p>
+
+          <div class="cta-row">
+            <a class="primary-button" href="#articles">Read the Articles</a>
+            <a class="secondary-button" href="#books">Explore the Books</a>
+          </div>
+
+          <p class="hero-mantra">
+            Read to Reflect… Reflect to Understand… Understand to Transform.
+          </p>
+        </div>
+
+        <aside class="hero-panel" aria-label="Explore PurelyBeingHuman">
+          <div class="panel-card featured-book">
+            <span class="panel-pill">The purpose</span>
+            <h2>Pause. Reflect. See more clearly.</h2>
+            <p>
+              These writings do not preach or offer ready-made answers. They
+              create space to question the world around us—and our own thoughts,
+              attitudes, and actions.
             </p>
-            <div class="cta-row">
-              <a class="primary-button" href="#books">Explore the collection</a>
-              <a class="secondary-button" href="articles.html">View all articles</a>
-            </div>
-            <ul class="stats-row" aria-label="Brand statistics">
-              <li>
-                <strong>5</strong>
-                <span>Published books</span>
-              </li>
-              <li>
-                <strong>5</strong>
-                <span>Upcoming titles</span>
-              </li>
-              <li>
-                <strong>3</strong>
-                <span>Store partners</span>
-              </li>
-            </ul>
+            <a class="text-link light-link" href="#purpose">Discover the purpose <span aria-hidden="true">→</span></a>
           </div>
 
-          <div class="hero-panel" aria-label="Featured brand highlights">
-            <div class="panel-card featured-book">
-              <span class="panel-pill">Featured</span>
-              <h2>The Courage to Be Real</h2>
-              <p>
-                A reader favourite centred on healing, authenticity, and becoming more aligned with your truest self.
-              </p>
-            </div>
-            <div class="mini-grid">
-              <div class="panel-card">
-                <span>Available on</span>
-                <strong>Amazon • Flipkart • NotionPress</strong>
-              </div>
-            </div>
+          <div class="mini-grid">
+            <a class="panel-card mini-panel" href="#books">
+              <span>Published books</span>
+              <strong>Explore the collection</strong>
+            </a>
+            <a class="panel-card mini-panel" href="#articles">
+              <span>Medium publication</span>
+              <strong>Read a fresh perspective</strong>
+            </a>
           </div>
-        </section>
+        </aside>
+      </section>
 
-        <section id="books" class="section-block">
-          <div class="section-heading">
-            <p class="eyebrow">Published works</p>
-            <h2>Five books already in the world</h2>
-          </div>
-
-          <div id="bookGrid" class="book-grid"></div>
-        </section>
-
-        <section id="upcoming" class="section-block alt-block">
-          <div class="section-heading">
-            <p class="eyebrow">Next in line</p>
-            <h2>Upcoming titles from PurelyBeingHuman</h2>
-          </div>
-
-          <div id="upcomingGrid" class="upcoming-grid"></div>
-        </section>
-
-        <section id="articles" class="section-block alt-block">
-          <div class="section-heading">
-            <p class="eyebrow">Latest from Medium</p>
-            <h2>Fresh perspectives from the PurelyBeingHuman publication</h2>
-          </div>
-
-          <div id="articleGrid" class="article-grid"></div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <div>
-          <p class="brand-name">PurelyBeingHuman</p>
-          <p>Writing for a more conscious, compassionate, and authentic life.</p>
+      <section class="section-block" id="purpose" aria-labelledby="purpose-title">
+        <div class="section-heading">
+          <p class="eyebrow">Why PurelyBeingHuman exists</p>
+          <h2 id="purpose-title">A pause in a world of quick reactions</h2>
         </div>
-        <div class="footer-links">
-          <a href="#books">Books</a>
-          <a href="#articles">Articles</a>
-        </div>
-      </footer>
-    </div>
 
-    <script src="script.js"></script>
-  </body>
+        <div class="reading-copy">
+          <p>
+            PurelyBeingHuman encourages people to think beyond assumptions, look
+            beyond prejudice, and recognise the values that make us truly human.
+          </p>
+          <p>
+            The writing is not intended to preach, impose beliefs, or hand you
+            ready-made answers. Instead, it invites you to examine the world
+            around you—and your own thoughts, attitudes, and actions.
+          </p>
+          <p>
+            Independent thinking, self-awareness, emotional maturity, empathy,
+            accountability, and human dignity connect personal growth with social
+            responsibility. The way we think and behave as individuals helps
+            shape the society we create.
+          </p>
+        </div>
+
+        <blockquote class="brand-quote">
+          A better society cannot be built merely by expecting others to change.
+          It begins when each of us is willing to examine ourselves and become
+          part of that change.
+        </blockquote>
+
+        <p class="closing-line">
+          A Better Individual… A More Responsible Society… A More Humane World.
+        </p>
+      </section>
+
+      <section class="section-block alt-block" id="ideas" aria-labelledby="ideas-title">
+        <div class="section-heading">
+          <p class="eyebrow">The ideas behind the writing</p>
+          <h2 id="ideas-title">Reflection that reaches into everyday life</h2>
+          <p class="section-intro">
+            Explore ideas that connect how we understand ourselves with how we
+            treat others and contribute to society.
+          </p>
+        </div>
+
+        <div class="idea-grid">
+          <article class="idea-card">
+            <h3>Think independently</h3>
+            <p>
+              Question assumptions, examine facts, and find the courage to think
+              beyond inherited opinions and biases.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Understand yourself first</h3>
+            <p>
+              Look within, recognise your limitations, and notice the attitudes
+              that shape your behaviour.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Respond thoughtfully</h3>
+            <p>
+              Develop emotional maturity and meet difficult moments with
+              patience, clarity, and wisdom rather than impulse.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Choose empathy and humanity</h3>
+            <p>
+              Respect differences, move beyond hatred and division, and recognise
+              every person’s dignity.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Practise accountability</h3>
+            <p>
+              Take responsibility for personal actions and value integrity and
+              answerability from those entrusted with power.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Build trust and mutual respect</h3>
+            <p>
+              Value genuine relationships, communicate without manipulation,
+              and influence others through integrity.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Make small actions count</h3>
+            <p>
+              Recognise how changes in individual thinking and behaviour can
+              create meaningful collective impact.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Protect human values</h3>
+            <p>
+              Let technological, economic, and social progress respect privacy,
+              freedom, and human dignity.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Turn awareness into action</h3>
+            <p>
+              Translate understanding and good intentions into meaningful
+              actions, productive habits, and lasting personal growth.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Choose meaningful progress</h3>
+            <p>
+              Use time, discipline, and resources with purpose—without
+              compromising well-being or human values.
+            </p>
+          </article>
+
+          <article class="idea-card">
+            <h3>Help shape a humane society</h3>
+            <p>
+              Support social justice, equality, mutual respect, and a shared
+              commitment to the common good.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" id="why-follow" aria-labelledby="follow-title">
+        <div class="section-heading">
+          <p class="eyebrow">Make reflection part of your day</p>
+          <h2 id="follow-title">Why follow PurelyBeingHuman?</h2>
+          <p class="section-intro">
+            Follow for considered perspectives that help you pause, question,
+            and choose how you want to respond.
+          </p>
+        </div>
+
+        <ul class="benefit-list">
+          <li>
+            <strong>Think beyond assumptions.</strong>
+            Explore ideas that encourage independent thought instead of
+            automatic conclusions.
+          </li>
+          <li>
+            <strong>Understand yourself more honestly.</strong>
+            Reflect on the attitudes, limitations, and habits that shape your
+            everyday choices.
+          </li>
+          <li>
+            <strong>Make room for empathy.</strong>
+            Consider other people’s experiences while recognising the dignity of
+            every person.
+          </li>
+          <li>
+            <strong>Connect personal growth with responsibility.</strong>
+            See how the way you think and act affects your relationships and the
+            wider community.
+          </li>
+          <li>
+            <strong>Turn reflection into meaningful action.</strong>
+            Find ideas to carry into your habits, conversations, and decisions.
+          </li>
+        </ul>
+
+        <div class="cta-row">
+          <a
+            class="primary-button"
+            href="https://medium.com/purely-being-human"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Follow on Medium</a>
+          <a class="secondary-button" href="#articles">Browse the articles</a>
+        </div>
+      </section>
+
+      <section class="section-block alt-block" id="books" aria-labelledby="books-title">
+        <div class="section-heading">
+          <p class="eyebrow">Go deeper with the books</p>
+          <h2 id="books-title">Articles spark a thought. Books give it room to grow.</h2>
+          <p class="section-intro">
+            The books explore empathy, accountability, anger, hatred, and
+            neutrality in greater depth. They offer space to stay with important
+            questions and examine your own thinking—not follow ready-made
+            answers.
+          </p>
+        </div>
+
+        <div class="book-grid" id="bookGrid" aria-live="polite">
+          <p class="loading-message">Loading the books…</p>
+        </div>
+
+        <div class="buy-note">
+          <h3>A thoughtful read for yourself—or someone you care about</h3>
+          <p>
+            Choose a subject that speaks to you, explore it at your own pace, and
+            return to the ideas whenever you need a moment to reflect.
+          </p>
+        </div>
+
+        <div class="subsection-heading">
+          <p class="eyebrow">What’s coming next</p>
+          <h3>More ideas to explore</h3>
+        </div>
+        <div class="upcoming-grid" id="upcomingGrid" aria-live="polite">
+          <p class="loading-message">Loading upcoming titles…</p>
+        </div>
+      </section>
+
+      <section class="section-block" id="articles" aria-labelledby="articles-title">
+        <div class="section-heading">
+          <p class="eyebrow">Ideas for your everyday reading</p>
+          <h2 id="articles-title">A small pause. A new perspective.</h2>
+          <p class="section-intro">
+            The Medium articles explore the ideas behind the books through
+            reflections on human behaviour, self-understanding, empathy,
+            accountability, and social responsibility. They are a welcoming place
+            to begin: read one, consider what it raises, and explore a book when
+            you want to go deeper.
+          </p>
+        </div>
+
+        <div class="article-grid" id="articleGrid" aria-live="polite">
+          <p class="loading-message">Loading the latest articles…</p>
+        </div>
+
+        <div class="section-cta">
+          <a
+            class="secondary-button"
+            href="https://medium.com/purely-being-human"
+            target="_blank"
+            rel="noopener noreferrer"
+          >View the Medium publication</a>
+        </div>
+      </section>
+
+      <section class="section-block alt-block" id="journey" aria-labelledby="journey-title">
+        <div class="section-heading">
+          <p class="eyebrow">Start wherever you are</p>
+          <h2 id="journey-title">One purpose, three ways to explore it</h2>
+          <p class="section-intro">
+            The website, articles, and books are different entry points into the
+            same invitation: think deeply, understand more, and live with greater
+            awareness.
+          </p>
+        </div>
+
+        <div class="journey-grid">
+          <article class="journey-card">
+            <span class="journey-number">01</span>
+            <h3>The website</h3>
+            <p>
+              Discover the purpose and the ideas that bring PurelyBeingHuman
+              together.
+            </p>
+            <a class="text-link" href="#purpose">Explore the purpose <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="journey-card">
+            <span class="journey-number">02</span>
+            <h3>The Medium articles</h3>
+            <p>
+              Read focused reflections and find a theme or question that speaks
+              to you.
+            </p>
+            <a class="text-link" href="#articles">Read the articles <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="journey-card">
+            <span class="journey-number">03</span>
+            <h3>The books</h3>
+            <p>
+              Spend more time with a subject and explore its ideas in greater
+              depth.
+            </p>
+            <a class="text-link" href="#books">Explore the books <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <p class="journey-note">
+          Start anywhere. Each path leads back to reflection—and to the
+          possibility of turning understanding into action.
+        </p>
+      </section>
+
+      <section class="closing-panel" aria-labelledby="closing-title">
+        <p class="eyebrow">Read. Reflect. Understand. Transform.</p>
+        <h2 id="closing-title">A better world begins with how we choose to live.</h2>
+        <p>
+          Read an article. Pick up a book. Start with one honest question—and
+          carry what you learn into the way you treat yourself and others.
+        </p>
+        <div class="cta-row">
+          <a class="primary-button" href="#articles">Read on Medium</a>
+          <a class="secondary-button" href="#books">Explore the books</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="footer-brand" href="#home">PurelyBeingHuman</a>
+        <p>
+          Read to Reflect… Reflect to Understand… Understand to Transform.
+        </p>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#purpose">Purpose</a>
+        <a href="#books">Books</a>
+        <a href="#articles">Articles</a>
+        <a
+          href="https://medium.com/purely-being-human"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Medium</a>
+      </nav>
+
+      <p class="copyright">
+        © <span id="currentYear"></span> PurelyBeingHuman
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
 </html>
