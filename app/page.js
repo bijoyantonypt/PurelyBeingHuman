@@ -4,7 +4,7 @@ const publishedBooks = [
     subtitle: 'Why The World Needs Compassion More Than Ever',
     image: 'Book_Images/Empathy.png',
     description:
-      'A book exploring empathy as a lived practice and a practical response to the fractures of modern life.',
+      'A compelling call to rediscover empathy and compassion as essential qualities for healing divisions, strengthening relationships and creating a more humane world.',
     price: '₹299',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'rose',
@@ -14,17 +14,17 @@ const publishedBooks = [
     subtitle: 'The Heart of Leadership and Justice',
     image: 'Book_Images/Accountability.png',
     description:
-      'A reflection on personal responsibility, leadership, and the courage to do what is right.',
+      'An examination of why accountability is fundamental to responsible leadership, institutional integrity and a just society.',
     price: '₹349',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'amber',
   },
   {
     title: 'Anger',
-    subtitle: 'Understanding the fire within',
+    subtitle: 'A Necessary Emotion or A Hindrance',
     image: 'Book_Images/Anger.png',
     description:
-      'A close look at anger as signal, pressure, and possibility for honest self-understanding.',
+      'An insightful exploration of anger as both a natural human emotion and a force that can either guide us constructively or undermine our relationships and well-being.',
     price: '₹279',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'green',
@@ -34,17 +34,17 @@ const publishedBooks = [
     subtitle: 'The Cancer that Destroys Mankind',
     image: 'Book_Images/Hatred.png',
     description:
-      'An examination of how hatred forms, spreads, and corrodes the human spirit and society.',
+      'An urgent exploration of how hatred is created, propagated and sustained and why confronting it is essential for a more peaceful and humane world.',
     price: '₹329',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'indigo',
   },
   {
     title: 'Redefining Neutrality',
-    subtitle: 'The space between sides',
+    subtitle: 'The Hidden Connection between Neutrality and Injustice',
     image: 'Book_Images/Neutrality.png',
     description:
-      'A reconsideration of neutrality as an active choice that may either uphold justice or enable harm.',
+      'A thought provoking examination of whether remaining neutral in the face of injustice can unintentionally allow injustice to prevail',
     price: '₹289',
     availability: ['Amazon', 'Flipkart', 'NotionPress'],
     accent: 'violet',
@@ -53,24 +53,29 @@ const publishedBooks = [
 
 const upcomingBooks = [
   {
-    title: 'From Reaction to Response: Mastering the Pause',
+    title: 'Reaction to Response',
     status: 'Launching soon',
-    description: 'A practical guide to emotional steadiness, wise timing, and the power of meaningful pause.',
+    description: 'A practical guide discovering the power of pausing before reacting and learn how a moment of awareness can transform your responses, relationships and life.',
   },
   {
     title: 'The Mirror Within',
     status: 'Pre-order open',
-    description: 'An inward journey toward self-awareness, truth-telling, and deeper human growth.',
+    description: 'An inward journey of self-reflection that encourages us to look within, understand ourselves honestly and consciously shape the life we want.',
   },
   {
-    title: 'Privacy and Human Dignity controlled by Government Corporations',
+    title: 'The Invisible Thread',
     status: 'Coming next',
-    description: 'A critical exploration of how institutions shape personal freedom, dignity, and human agency.',
+    description: 'Exploring how empathy, trust, communication and understanding can influence others positively without controlling or manipulating them.',
   },
   {
-    title: 'Micro shifts Macro Impact: Awakening of A Common Man',
+    title: 'Micro Shifts – Macro Impact',
     status: 'Announcing soon',
-    description: 'A compelling reflection on how small human changes can ripple into collective transformation.',
+    description: 'Compelling reflections on how small changes in everyday thinking and action can awaken individual responsibility and create meaningful change in society.',
+  },
+  {
+    title: 'Privacy and Human Dignity in a World Controlled by Corporations',
+    status: 'Coming next',
+    description: 'A critical exploration of how technology and corporate power are reshaping privacy, personal freedom and the fundamental dignity of the individual.',
   },
 ];
 
