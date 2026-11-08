@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  const themeToggle = document.getElementById('themeToggle');
+
+  if (themeToggle) {
+    const setTheme = (theme) => {
+      const isDark = theme === 'dark';
+      const nextMode = isDark ? 'light' : 'dark';
+      const label = `Switch to ${nextMode} mode`;
+
+      document.documentElement.dataset.theme = theme;
+      themeToggle.setAttribute('aria-label', label);
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.title = label;
+
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      if (themeColor) {
+        themeColor.setAttribute('content', isDark ? '#0b1528' : '#f4f1e8');
+      }
+
+      try {
+        localStorage.setItem('purelybeinghuman-theme', theme);
+      } catch {}
+    };
+
+    const initialTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    setTheme(initialTheme);
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      setTheme(nextTheme);
+    });
+  }
+
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {

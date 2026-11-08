@@ -16,6 +16,13 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Newsreader:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
+  <script>
+    try {
+      if (localStorage.getItem("purelybeinghuman-theme") === "dark") {
+        document.documentElement.dataset.theme = "dark";
+      }
+    } catch {}
+  </script>
   <link rel="stylesheet" href="styles.css">
   <script src="site-data.js" defer></script>
   <script src="script.js" defer></script>
@@ -24,21 +31,39 @@
 <body>
   <div class="page-shell">
     <header class="topbar">
-      <a class="brand-block" href="#home" aria-label="PurelyBeingHuman home">
-        <span class="brand-logo">
-          <img
-            class="brand-mark"
-            src="Book_Images/PurelyBeingHuman%20Profile.jpg"
-            alt=""
-            width="92"
-            height="92"
-          >
-        </span>
-        <span class="brand-copy">
-          <span class="brand-name">PurelyBeingHuman</span>
-          <span class="brand-tag">A Better Individual... A More Responsible Society... A More Humane World...</span>
-        </span>
-      </a>
+      <div class="topbar-brand-row">
+        <a class="brand-block" href="#home" aria-label="PurelyBeingHuman home">
+          <span class="brand-logo">
+            <img
+              class="brand-mark"
+              src="Book_Images/PurelyBeingHuman%20Profile.jpg"
+              alt=""
+              width="92"
+              height="92"
+            >
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">PurelyBeingHuman</span>
+            <span class="brand-tag">A Better Individual... A More Responsible Society... A More Humane World...</span>
+          </span>
+        </a>
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+          title="Switch to dark mode"
+        >
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"></path>
+          </svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+          </svg>
+        </button>
+      </div>
 
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#purpose">Purpose</a>
